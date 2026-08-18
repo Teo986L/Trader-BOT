@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
    <link rel="icon" type="image/png" href="/favicon.png">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --bg-dark: #08090d;
@@ -42,224 +42,111 @@
             min-height: 640px;
             overflow: hidden;
         }
-        /* Fix para o espaço em branco no fundo do celular */
         @supports (height: 100svh) {
-            .slider-container {
-                height: 100svh;
-            }
+            .slider-container { height: 100svh; }
         }
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1.5s ease-in-out;
         }
         .slide.active { opacity: 1; }
         .slide::after {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; inset: 0;
             background: linear-gradient(90deg, rgba(8,9,13,0.96) 0%, rgba(8,9,13,0.82) 40%, rgba(8,9,13,0.35) 100%);
         }
         .slide-content {
-            position: relative;
-            z-index: 10;
-            padding-left: 5%;
-            padding-right: 5%;
+            position: relative; z-index: 10; padding-left: 5%; padding-right: 5%;
         }
         .slider-dots {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 20;
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 10px; z-index: 20;
         }
         .dot {
-            width: 10px;
-            height: 10px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            border: none;
-            padding: 0;
-            transition: all 0.3s;
+            width: 10px; height: 10px; background: rgba(255,255,255,0.3);
+            border-radius: 50%; cursor: pointer; border: none; padding: 0; transition: all 0.3s;
         }
-        .dot.active {
-            background: var(--gold);
-            width: 30px;
-            border-radius: 5px;
-        }
+        .dot.active { background: var(--gold); width: 30px; border-radius: 5px; }
 
         /* Utils */
         .gradient-gold {
             background: linear-gradient(90deg, var(--gold), var(--gold-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            -webkit-background-clip: text; background-clip: text; color: transparent;
         }
         .glass-card {
-            background: rgba(17, 20, 28, 0.7);
-            backdrop-filter: blur(12px);
+            background: rgba(17, 20, 28, 0.7); backdrop-filter: blur(12px);
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Unified button system — every CTA on the page uses one of these two classes */
+        /* Unified button system */
         .btn-gold {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: linear-gradient(180deg, var(--gold), var(--gold-light));
-            color: #000;
-            font-weight: 700;
-            border: 1px solid transparent;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            background: linear-gradient(180deg, var(--gold), var(--gold-light)); color: #000;
+            font-weight: 700; border: 1px solid transparent;
             transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-            box-shadow: 0 4px 20px rgba(240, 185, 11, 0.3);
-            text-decoration: none;
-            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(240, 185, 11, 0.3); text-decoration: none; cursor: pointer;
         }
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(240, 185, 11, 0.5);
-            filter: brightness(1.03);
-        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(240, 185, 11, 0.5); filter: brightness(1.03); }
         .btn-gold:active { transform: translateY(0); }
 
         .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            border: 1px solid #4b5563;
-            color: #fff;
-            background: transparent;
-            font-weight: 600;
-            transition: background 0.25s ease, border-color 0.25s ease;
-            text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            border: 1px solid #4b5563; color: #fff; background: transparent; font-weight: 600;
+            transition: background 0.25s ease, border-color 0.25s ease; text-decoration: none;
         }
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: var(--gold);
-        }
+        .btn-outline:hover { background: rgba(255,255,255,0.06); border-color: var(--gold); }
 
         .btn-whatsapp {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: #1f2937;
-            color: #fff;
-            font-weight: 700;
-            padding: 0.75rem 1.5rem; /* Adicionado espaçamento interno horizontal e vertical */
-            border: 1px solid transparent; /* Iguala ao tamanho do btn-gold */
-            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(31, 41, 55, 0.3); /* Sombra para destacar mantendo a cor escura */
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            background: #1f2937; color: #fff; font-weight: 700; padding: 0.75rem 1.5rem;
+            border: 1px solid transparent; transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            text-decoration: none; cursor: pointer; box-shadow: 0 4px 20px rgba(31, 41, 55, 0.3);
         }
-        .btn-whatsapp:hover { 
-            background: #25D366; 
-            color: #06210f; 
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
-        }
+        .btn-whatsapp:hover { background: #25D366; color: #06210f; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); }
 
-        .ticker-wrapper {
-            background: #000;
-            border-bottom: 1px solid #1e2126;
-        }
-        .ticker {
-            display: flex;
-            gap: 2rem;
-            animation: scroll 40s linear infinite;
-            white-space: nowrap;
-            width: max-content;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--emerald);
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 6px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(14, 203, 129, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(14, 203, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(14, 203, 129, 0); }
-        }
+        .ticker-wrapper { background: #000; border-bottom: 1px solid #1e2126; }
+        .ticker { display: flex; gap: 2rem; animation: scroll 40s linear infinite; white-space: nowrap; width: max-content; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        .pulse-dot { width: 8px; height: 8px; background: var(--emerald); border-radius: 50%; display: inline-block; margin-right: 6px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(14, 203, 129, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(14, 203, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(14, 203, 129, 0); } }
 
         /* FAQ */
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        .faq-item.active .faq-answer {
-            max-height: 320px;
-            padding-top: 1rem;
-        }
+        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 320px; padding-top: 1rem; }
         .faq-item.active .faq-icon { transform: rotate(180deg); }
         .faq-icon { transition: transform 0.3s ease; }
 
-        /* Plano destaque — scale only on wide screens so cards never overflow on mobile */
-        .plan-highlight {
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 30px rgba(240, 185, 11, 0.15);
-        }
-        @media (min-width: 1024px) {
-            .plan-highlight { transform: scale(1.03); }
-        }
+        /* Plano destaque */
+        .plan-highlight { border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(240, 185, 11, 0.15); }
+        @media (min-width: 1024px) { .plan-highlight { transform: scale(1.03); } }
 
         /* Indicator table */
         .indicator-row:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.06); }
 
-        /* Step number badges for "Como funciona" — order is real here (steps happen in sequence) */
+        /* Step number badges */
         .step-badge {
-            width: 2.75rem;
-            height: 2.75rem;
-            flex-shrink: 0;
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.1rem;
-            background: rgba(240,185,11,0.1);
-            color: var(--gold);
-            border: 1px solid rgba(240,185,11,0.3);
+            width: 2.75rem; height: 2.75rem; flex-shrink: 0; border-radius: 0.75rem;
+            display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem;
+            background: rgba(240,185,11,0.1); color: var(--gold); border: 1px solid rgba(240,185,11,0.3);
         }
         
         /* WhatsApp Message Bubble Mockup */
-        .wa-bubble {
-            background: #1f2c34;
-            border-radius: 12px 12px 12px 0;
-            padding: 16px;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        .wa-bubble { background: #1f2c34; border-radius: 12px 12px 12px 0; padding: 16px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .wa-bubble::before { content: ''; position: absolute; bottom: 0; left: -10px; width: 10px; height: 10px; background: #1f2c34; clip-path: polygon(100% 0, 0 100%, 100% 100%); }
+
+        /* === MOBILE MENU (SIDEBAR) === */
+        #mobile-menu {
+            position: fixed; top: 0; right: 0; height: 100%; width: 280px; max-width: 80vw;
+            background: #0c0e14; z-index: 100; transform: translateX(100%); transition: transform 0.3s ease-in-out;
+            border-left: 1px solid rgba(255,255,255,0.1); box-shadow: -5px 0 20px rgba(0,0,0,0.5);
         }
-        .wa-bubble::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -10px;
-            width: 10px;
-            height: 10px;
-            background: #1f2c34;
-            clip-path: polygon(100% 0, 0 100%, 100% 100%);
+        #mobile-menu.active { transform: translateX(0); }
+        #menu-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 90;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
         }
+        #menu-overlay.active { opacity: 1; visibility: visible; }
     </style>
 </head>
 <body>
@@ -268,10 +155,11 @@
     <header class="fixed top-0 left-0 w-full z-50 p-4 transition-all duration-300" id="header">
         <nav class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-3 flex justify-between items-center shadow-lg">
             <a href="#home" class="flex items-center gap-3 text-xl font-extrabold text-white">
-                <!-- LOGO AQUI: Substitua 'LOGO.png' pelo nome do seu arquivo -->
                 <img src="LOGO.png" alt="Logo Trader BOT" class="h-10 w-auto">
                 TRADER <span class="gradient-gold">BOT</span>
             </a>
+            
+            <!-- Menu Desktop -->
             <ul class="hidden lg:flex gap-8 text-sm font-medium text-gray-300">
                 <li><a href="#home" class="hover:text-[#f0b90b] transition">Início</a></li>
                 <li><a href="#features" class="hover:text-[#f0b90b] transition">Tecnologia</a></li>
@@ -280,11 +168,44 @@
                 <li><a href="#faq" class="hover:text-[#f0b90b] transition">FAQ</a></li>
                 <li><a href="#contact" class="hover:text-[#f0b90b] transition">Contacto</a></li>
             </ul>
-            <a href="#pricing" class="btn-gold px-5 py-2 rounded-lg text-sm">
-                Entrar Agora
-            </a>
+
+            <div class="flex items-center gap-4">
+                <a href="#pricing" class="btn-gold px-5 py-2 rounded-lg text-sm hidden sm:inline-flex">
+                    Entrar Agora
+                </a>
+                <!-- Botão Hamburguer (Mobile) -->
+                <button id="menu-btn" class="lg:hidden text-white text-2xl focus:outline-none" aria-label="Abrir menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
         </nav>
     </header>
+
+    <!-- Overlay do Menu Mobile -->
+    <div id="menu-overlay"></div>
+
+    <!-- Menu Lateral Mobile -->
+    <div id="mobile-menu">
+        <div class="p-6 flex justify-between items-center border-b border-gray-800 mb-4">
+            <span class="text-lg font-extrabold text-white">Navegação</span>
+            <button id="close-menu" class="text-gray-400 hover:text-white text-2xl focus:outline-none" aria-label="Fechar menu">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col px-6">
+            <a href="#home" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Início</a>
+            <a href="#features" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Tecnologia</a>
+            <a href="#modes" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Modos</a>
+            <a href="#pricing" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Acessos</a>
+            <a href="#faq" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">FAQ</a>
+            <a href="#contact" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Contacto</a>
+        </nav>
+        <div class="p-6 mt-4">
+            <a href="#pricing" class="mobile-link btn-gold w-full px-5 py-3 rounded-lg text-sm justify-center">
+                Entrar Agora
+            </a>
+        </div>
+    </div>
 
     <!-- Hero Slider -->
     <section id="home" class="slider-container">
@@ -883,7 +804,6 @@
     <footer class="py-12 px-4 border-t border-gray-800 bg-black">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
             <div class="flex items-center gap-3 text-xl font-extrabold text-white mb-4 md:mb-0">
-                <!-- LOGO AQUI: Substitua 'LOGO.png' pelo nome do seu arquivo -->
                 <img src="LOGO.png" alt="Logo Trader BOT" class="h-10 w-auto">
                 TRADER BOT
             </div>
@@ -897,9 +817,9 @@
         <div class="max-w-7xl mx-auto text-center text-gray-600 text-xs mt-8 border-t border-gray-900 pt-6">
             <p>Aviso Legal: O trading envolve riscos e pode resultar na perda de todo o capital investido. Resultados passados não garantem resultados futuros. Os sinais fornecidos são de caráter educacional e informativo, não constituindo recomendação de investimento. Operar com responsabilidade é obrigação exclusiva do trader.</p>
             <div class="flex gap-6 justify-center mt-4">
-			<a href="/termos" class="hover:text-[#f0b90b] transition">Termos de Uso</a>
-			<a href="/privacidade" class="hover:text-[#f0b90b] transition">Política de Privacidade</a>
-			</div>
+            <a href="/termos" class="hover:text-[#f0b90b] transition">Termos de Uso</a>
+            <a href="/privacidade" class="hover:text-[#f0b90b] transition">Política de Privacidade</a>
+            </div>
             <p class="mt-2">© 2024 Trader BOT Technologies. Todos os direitos reservados.</p>
         </div>
     </footer>
@@ -985,6 +905,34 @@
             const isActive = item.classList.toggle('active');
             buttonEl.setAttribute('aria-expanded', isActive ? 'true' : 'false');
         }
+
+        // --- MOBILE MENU LOGIC ---
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Bloqueia scroll do fundo
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Libera scroll
+        }
+
+        menuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        
+        // Fecha o menu quando um link é clicado
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
     </script>
 </body>
 </html>
