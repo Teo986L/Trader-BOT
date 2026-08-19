@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trader BOT | Sinais de Alta Precisão e Inteligência de Mercado</title>
     
-    <!-- Preconnect para acelerar o carregamento das fontes, scripts e imagens -->
+    <!-- CSS Crítico para evitar ecrã branco -->
+    <style>body{background-color:#08090d;color:#eaecef;margin:0;}</style>
+
+    <!-- Preconnect (Apenas os 4 mais importantes) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="preconnect" href="https://api.coingecko.com">
 
     <!-- Preload da imagem principal para o LCP no celular -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1600&auto=format&fit=crop">
 
-    <!-- ===== META DESCRIPTION (Para aparecer no Google) ===== -->
+    <!-- ===== META DESCRIPTION ===== -->
     <meta name="description" content="Sinais de Cripto, Forex e Índices Sintéticos com 4 camadas de verificação (DeMarker, ADX, MACD). Canal gratuito com 2 sinais diários. Grupos VIP com modos Sniper, Caçador e Pescador. Entre já!">
 
-    <!-- ===== OPEN GRAPH (Para a prévia no WhatsApp/Telegram/Facebook) ===== -->
+    <!-- ===== OPEN GRAPH ===== -->
     <meta property="og:title" content="Trader BOT | A Revolução do Trading Algorítmico" />
     <meta property="og:description" content="Pare de adivinhar o mercado. Receba sinais precisos com entrada, Take Profit e Stop Loss definidos. Tecnologia de 4 camadas. Acesso VIP escalonado. Junte-se aos Top 1%!" />
     <meta property="og:image" content="https://traderbot-lovat.vercel.app/og-imagem.png" />
@@ -27,10 +28,10 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Trader BOT" />
 
-    <!-- ===== TWITTER CARD (Para o Twitter/LinkedIn) ===== -->
+    <!-- ===== TWITTER CARD ===== -->
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- ===== FAQ SCHEMA MARKUP (Para o Google) ===== -->
+    <!-- ===== FAQ SCHEMA MARKUP ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -75,10 +76,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-    <!-- ===== AOS CSS (Animações ao rolar) ===== -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome e AOS carregados de forma não bloqueante -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
 
     <style>
         :root {
@@ -93,7 +97,7 @@
         }
         * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; margin: 0; }
 
         a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
 
@@ -103,9 +107,11 @@
         .slide.active { opacity: 1; }
         .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,9,13,0.96) 0%, rgba(8,9,13,0.82) 40%, rgba(8,9,13,0.35) 100%); }
         .slide-content { position: relative; z-index: 10; padding-left: 5%; padding-right: 5%; }
-        .slider-dots { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 20; }
-        .dot { width: 10px; height: 10px; background: rgba(255,255,255,0.3); border-radius: 50%; cursor: pointer; border: none; padding: 0; transition: all 0.3s; }
-        .dot.active { background: var(--gold); width: 30px; border-radius: 5px; }
+        
+        .slider-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 20; }
+        .dot-wrapper { width: 24px; height: 24px; background: transparent; border: none; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .dot { width: 10px; height: 10px; background: rgba(255,255,255,0.3); border-radius: 50%; transition: all 0.3s; }
+        .dot.active { background: var(--gold); width: 24px; border-radius: 5px; }
 
         .gradient-gold { background: linear-gradient(90deg, var(--gold), var(--gold-light)); -webkit-background-clip: text; background-clip: text; color: transparent; }
         .glass-card { background: rgba(17, 20, 28, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
@@ -124,8 +130,10 @@
         .ticker { display: flex; gap: 2rem; animation: scroll 40s linear infinite; white-space: nowrap; width: max-content; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
-        .pulse-dot { width: 8px; height: 8px; background: var(--emerald); border-radius: 50%; display: inline-block; margin-right: 6px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(14, 203, 129, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(14, 203, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(14, 203, 129, 0); } }
+        /* Animação otimizada para não causar reflow no celular */
+        .pulse-dot { width: 8px; height: 8px; background: var(--emerald); border-radius: 50%; display: inline-block; margin-right: 6px; position: relative; }
+        .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(3); opacity: 0; } }
 
         .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; }
         .faq-item.active .faq-answer { max-height: 320px; padding-top: 1rem; }
@@ -152,7 +160,7 @@
     <header class="fixed top-0 left-0 w-full z-50 p-4 transition-all duration-300" id="header">
         <nav class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-3 flex justify-between items-center shadow-lg">
             <a href="#home" class="flex items-center gap-3 text-xl font-extrabold text-white">
-                <img src="LOGO.png" alt="Logo Trader BOT" class="h-10 w-auto" width="40" height="40" loading="lazy">
+                <img src="LOGO.png" alt="Logo Trader BOT" class="h-10 w-auto" width="40" height="40" loading="lazy" decoding="async">
                 TRADER <span class="gradient-gold">BOT</span>
             </a>
             <ul class="hidden lg:flex gap-8 text-sm font-medium text-gray-300">
@@ -196,7 +204,7 @@
         </div>
     </div>
 
-    <!-- Hero Slider (Imagens otimizadas para w=1600) -->
+    <!-- Hero Slider -->
     <section id="home" class="slider-container">
         <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1600&auto=format&fit=crop');">
             <div class="slide-content h-full flex flex-col justify-center max-w-7xl mx-auto pt-24 pb-20">
@@ -239,22 +247,22 @@
             </div>
         </div>
         <div class="slider-dots" role="tablist" aria-label="Slides de destaque">
-            <button class="dot active" onclick="currentSlide(0)" aria-label="Slide 1" role="tab"></button>
-            <button class="dot" onclick="currentSlide(1)" aria-label="Slide 2" role="tab"></button>
-            <button class="dot" onclick="currentSlide(2)" aria-label="Slide 3" role="tab"></button>
+            <button class="dot-wrapper" onclick="currentSlide(0)" aria-label="Slide 1" role="tab"><span class="dot active"></span></button>
+            <button class="dot-wrapper" onclick="currentSlide(1)" aria-label="Slide 2" role="tab"><span class="dot"></span></button>
+            <button class="dot-wrapper" onclick="currentSlide(2)" aria-label="Slide 3" role="tab"><span class="dot"></span></button>
         </div>
     </section>
 
     <!-- Ticker -->
     <section class="ticker-wrapper py-3 overflow-hidden" aria-label="Cotações em tempo real"><div class="ticker" id="crypto-ticker"></div></section>
 
-    <!-- Estatísticas -->
+    <!-- Estatísticas (Títulos corrigidos para DIV) -->
     <section class="py-16 px-4 border-b border-gray-800">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div data-aos="fade-up"><h3 class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">85%+</h3><p class="text-gray-300 text-sm">Taxa de Assertividade Histórica</p></div>
-            <div data-aos="fade-up" data-aos-delay="100"><h3 class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">4</h3><p class="text-gray-300 text-sm">Camadas de Verificação por Sinal</p></div>
-            <div data-aos="fade-up" data-aos-delay="200"><h3 class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">24/7</h3><p class="text-gray-300 text-sm">Monitoramento de Mercado</p></div>
-            <div data-aos="fade-up" data-aos-delay="300"><h3 class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">2.500+</h3><p class="text-gray-300 text-sm">Sinais Enviados</p></div>
+            <div data-aos="fade-up"><div class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">85%+</div><p class="text-gray-300 text-sm">Taxa de Assertividade Histórica</p></div>
+            <div data-aos="fade-up" data-aos-delay="100"><div class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">4</div><p class="text-gray-300 text-sm">Camadas de Verificação por Sinal</p></div>
+            <div data-aos="fade-up" data-aos-delay="200"><div class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">24/7</div><p class="text-gray-300 text-sm">Monitoramento de Mercado</p></div>
+            <div data-aos="fade-up" data-aos-delay="300"><div class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">2.500+</div><p class="text-gray-300 text-sm">Sinais Enviados</p></div>
         </div>
         <p class="text-center text-gray-400 text-xs max-w-2xl mx-auto mt-6">*Estatísticas baseadas no histórico de sinais gerados pelo motor Trader BOT. Rentabilidade passada não é garantia de resultados futuros.</p>
     </section>
@@ -405,7 +413,7 @@
         </div>
     </section>
 
-    <!-- Testemunhos -->
+    <!-- Testemunhos (H4 alterados para H3) -->
     <section id="testimonials" class="py-20 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -416,7 +424,7 @@
                 <div class="glass-card p-6 rounded-2xl flex flex-col" data-aos="fade-up">
                     <div class="flex items-center gap-4 mb-4">
                         <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-[#f0b90b]">J</div>
-                        <div><h4 class="font-bold text-white">João M.</h4><p class="text-xs text-gray-400">Assinante 3 Meses</p></div>
+                        <div><h3 class="font-bold text-white">João M.</h3><p class="text-xs text-gray-400">Assinante 3 Meses</p></div>
                     </div>
                     <p class="text-sm text-gray-300 flex-grow">"O modo Caçador mudou a minha forma de operar. Passei a ter muito mais segurança e não entro mais no mercado no escuro."</p>
                     <div class="mt-4 text-[#f0b90b] text-sm">★★★★★</div>
@@ -424,7 +432,7 @@
                 <div class="glass-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="150">
                     <div class="flex items-center gap-4 mb-4">
                         <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-[#0ecb81]">A</div>
-                        <div><h4 class="font-bold text-white">Ana P.</h4><p class="text-xs text-gray-400">Assinante 1 Mês</p></div>
+                        <div><h3 class="font-bold text-white">Ana P.</h3><p class="text-xs text-gray-400">Assinante 1 Mês</p></div>
                     </div>
                     <p class="text-sm text-gray-300 flex-grow">"Os avisos de 24h antes de expirar o plano são super úteis. O suporte no WhatsApp é rápido e os sinais são muito precisos."</p>
                     <div class="mt-4 text-[#f0b90b] text-sm">★★★★★</div>
@@ -432,7 +440,7 @@
                 <div class="glass-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex items-center gap-4 mb-4">
                         <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-blue-400">C</div>
-                        <div><h4 class="font-bold text-white">Carlos S.</h4><p class="text-xs text-gray-400">Assinante 1 Ano</p></div>
+                        <div><h3 class="font-bold text-white">Carlos S.</h3><p class="text-xs text-gray-400">Assinante 1 Ano</p></div>
                     </div>
                     <p class="text-sm text-gray-300 flex-grow">"A análise de 4 camadas faz toda a diferença. O filtro DeMarker evita que eu entre nas falsas rupturas. Melhor investimento que fiz."</p>
                     <div class="mt-4 text-[#f0b90b] text-sm">★★★★★</div>
@@ -440,7 +448,7 @@
                 <div class="glass-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="450">
                     <div class="flex items-center gap-4 mb-4">
                         <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-purple-500">M</div>
-                        <div><h4 class="font-bold text-white">Marta L.</h4><p class="text-xs text-gray-400">Assinante 6 Meses</p></div>
+                        <div><h3 class="font-bold text-white">Marta L.</h3><p class="text-xs text-gray-400">Assinante 6 Meses</p></div>
                     </div>
                     <p class="text-sm text-gray-300 flex-grow">"Como não tenho muito tempo no dia, o modo Pescador é perfeito. Poucos sinais, mas de altíssima qualidade. Recomendo a todos."</p>
                     <div class="mt-4 text-[#f0b90b] text-sm">★★★★★</div>
@@ -607,7 +615,7 @@
             <p class="text-gray-300 mb-10 max-w-xl mx-auto" data-aos="fade-up">Dúvidas sobre planos, modos de operação ou suporte técnico? A nossa equipa responde diretamente pelo WhatsApp.</p>
             <div class="grid sm:grid-cols-3 gap-6" data-aos="zoom-in">
                 <a href="https://wa.me/244900000000?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20o%20Trader%20BOT." target="_blank" rel="noopener" class="glass-card p-6 rounded-2xl hover:border-[#25D366] border border-transparent transition"><i class="fa-brands fa-whatsapp text-3xl text-[#25D366] mb-3" aria-hidden="true"></i><p class="font-bold">WhatsApp</p><p class="text-gray-400 text-xs mt-1">Resposta em minutos</p></a>
-                <a href="#" class="glass-card p-6 rounded-2xl hover:border-blue-400 border border-transparent transition"><i class="fa-brands fa-telegram text-3xl text-blue-400 mb-3" aria-hidden="true"></i><p class="font-bold">Telegram</p><p class="text-gray-400 text-xs mt-1">Canal de sinais e suporte</p></a>
+                <a href="#contact" class="glass-card p-6 rounded-2xl hover:border-blue-400 border border-transparent transition"><i class="fa-brands fa-telegram text-3xl text-blue-400 mb-3" aria-hidden="true"></i><p class="font-bold">Telegram</p><p class="text-gray-400 text-xs mt-1">Canal de sinais e suporte</p></a>
                 <a href="mailto:trader.bot.83.28@gmail.com" class="glass-card p-6 rounded-2xl hover:border-[#f0b90b] border border-transparent transition"><i class="fa-solid fa-envelope text-3xl text-[#f0b90b] mb-3" aria-hidden="true"></i><p class="font-bold">Email</p><p class="text-gray-400 text-xs mt-1">trader.bot.83.28@gmail.com</p></a>
             </div>
         </div>
@@ -616,10 +624,10 @@
     <!-- Footer -->
     <footer class="py-12 px-4 border-t border-gray-800 bg-black">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center gap-3 text-xl font-extrabold text-white mb-4 md:mb-0"><img src="LOGO.png" alt="Logo Trader BOT" class="h-10 w-auto" width="40" height="40" loading="lazy"> TRADER BOT</div>
+            <div class="flex items-center gap-3 text-xl font-extrabold text-white mb-4 md:mb-0"><img src="LOGO.png" alt="Logo Trader BOT" class="h-10 w-auto" width="40" height="40" loading="lazy" decoding="async"> TRADER BOT</div>
             <div class="flex gap-6 text-xl">
                 <a href="https://whatsapp.com/channel/0029VbCc63U1SWt1I3oZq92M" target="_blank" rel="noopener" class="hover:text-[#25D366] transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
-                <a href="#" class="hover:text-blue-400 transition" aria-label="Telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
+                <a href="#contact" class="hover:text-blue-400 transition" aria-label="Telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
                 <a href="https://www.youtube.com/@TraderBOTChannel" target="_blank" rel="noopener" class="hover:text-red-500 transition" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
                 <a href="mailto:trader.bot.83.28@gmail.com" class="hover:text-[#f0b90b] transition" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
             </div>
