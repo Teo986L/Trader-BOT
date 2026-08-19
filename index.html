@@ -645,13 +645,12 @@
     <!-- ===== SCRIPTS ===== -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
-        // Inicializa as animações AOS (desativado no mobile para ganhar performance)
+        // Inicializa as animações AOS AGORA TAMBÉM NO MOBILE
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof AOS !== 'undefined') {
                 AOS.init({
                     duration: 800,
-                    once: true,
-                    disable: 'mobile' 
+                    once: true // A animação acontece apenas uma vez para não ser cansativa
                 });
             }
         });
