@@ -820,7 +820,8 @@
             <a href="/termos" class="hover:text-[#f0b90b] transition">Termos de Uso</a>
             <a href="/privacidade" class="hover:text-[#f0b90b] transition">Política de Privacidade</a>
             </div>
-            <p class="mt-2">© 2024 Trader BOT Technologies. Todos os direitos reservados.</p>
+            <!-- ANO DINÂMICO AQUI -->
+            <p class="mt-2">© 2024 - <span id="current-year"></span> Trader BOT Technologies. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -933,6 +934,9 @@
         mobileLinks.forEach(link => {
             link.addEventListener('click', closeMenu);
         });
+
+        // --- ANO DINÂMICO NO RODAPÉ ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
