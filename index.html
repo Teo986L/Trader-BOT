@@ -620,18 +620,12 @@
         </div>
     </section>
 
-    <!-- Trustpilot Widget Oficial (Colecionador de Resenhas) -->
+    <!-- Trustpilot Widget (Carregado via Script Dinâmico) -->
     <section class="py-16 bg-[#0c0e14] border-t border-gray-800">
         <div class="max-w-3xl mx-auto text-center px-4">
             <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Avaliações no <span class="text-[#00b67a]">Trustpilot</span></h2>
             <p class="text-gray-300 mb-8" data-aos="fade-up">A transparência é a base da nossa comunidade. Veja o que os nossos traders dizem sobre nós.</p>
-            <div class="flex justify-center" data-aos="zoom-in">
-                <!-- TrustBox widget - Review Collector -->
-                <div class="trustpilot-widget" data-locale="pt-PT" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a85f674f4ba0eb8dbbfa994" data-style-height="52px" data-style-width="100%" data-token="5f6477a9-fe29-4ac9-b193-bd1e793a25ce">
-                  <a href="https://pt.trustpilot.com/review/traderbot-lovat.vercel.app" target="_blank" rel="noopener">Trustpilot</a>
-                </div>
-                <!-- End TrustBox widget -->
-            </div>
+            <div id="trustboxContainer" class="flex justify-center" data-aos="zoom-in"></div>
         </div>
     </section>
 
@@ -658,16 +652,38 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <!-- TrustBox script -->
-    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <script>
-        // Inicializa as animações AOS AGORA TAMBÉM NO MOBILE
+        // Inicializa as animações AOS
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof AOS !== 'undefined') {
                 AOS.init({
                     duration: 800,
                     once: true
                 });
+            }
+
+            // --- Injeção Dinâmica do Widget Trustpilot (Baseado no GTM script) ---
+            var containerID = "trustboxContainer";
+            var trustbox = document.createElement("div");
+            trustbox.className = 'trustpilot-widget';
+            trustbox.setAttribute('data-locale', 'pt-PT');
+            trustbox.setAttribute('data-template-id', '56278e9abfbbba0bdcd568bc');
+            trustbox.setAttribute('data-businessunit-id', '6a85f674f4ba0eb8dbbfa994');
+            trustbox.setAttribute('data-style-height', '52px');
+            trustbox.setAttribute('data-style-width', '100%');
+            trustbox.setAttribute('data-theme', 'dark'); // Forçar tema escuro para combinar com o site
+            trustbox.setAttribute('data-token', '3975ec42-aeb9-4030-8b0c-8daea325f822');
+            trustbox.innerHTML = '<a href="https://pt.trustpilot.com/review/traderbot-lovat.vercel.app" target="_blank" rel="noopener">Trustpilot</a>';
+
+            var container = document.getElementById(containerID);
+            if (container) {
+                container.appendChild(trustbox);
+                
+                // --- Carregar o Script do Trustpilot dinamicamente ---
+                var trustpilotScript = document.createElement("script");
+                trustpilotScript.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+                trustpilotScript.async = true;
+                document.head.appendChild(trustpilotScript);
             }
         });
 
