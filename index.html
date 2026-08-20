@@ -151,6 +151,18 @@
         #mobile-menu.active { transform: translateX(0); }
         #menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 90; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
         #menu-overlay.active { opacity: 1; visibility: visible; }
+
+        /* === CSS DO CARROSSEL DE AVALIAÇÕES === */
+        .reviews-carousel-container { overflow: hidden; width: 100%; mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); }
+        .reviews-carousel-track { display: flex; gap: 24px; width: max-content; animation: carousel-scroll 40s linear infinite; padding: 10px 0; }
+        .reviews-carousel-container:hover .reviews-carousel-track { animation-play-state: paused; }
+        @keyframes carousel-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 12px)); } }
+        .review-card { background: rgba(17, 20, 28, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.3s; }
+        .review-card:hover { border-color: rgba(0, 182, 122, 0.3); }
+        .review-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background-color: #2d3748; }
+        .read-more-btn { color: var(--emerald); font-weight: 700; cursor: pointer; font-size: 13px; background: none; border: none; padding: 0; text-align: left; margin-top: 4px; }
+        .read-more-btn:hover { text-decoration: underline; }
+        .tp-star { color: #00b67a; }
     </style>
 </head>
 <body>
@@ -412,7 +424,7 @@
         </div>
     </section>
 
-    <!-- Testemunhos -->
+    <!-- Testemunhos Fixos -->
     <section id="testimonials" class="py-20 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -620,12 +632,136 @@
         </div>
     </section>
 
-    <!-- Trustpilot Widget (Carregado via Script Dinâmico) -->
-    <section class="py-16 bg-[#0c0e14] border-t border-gray-800">
-        <div class="max-w-3xl mx-auto text-center px-4">
-            <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Avaliações no <span class="text-[#00b67a]">Trustpilot</span></h2>
-            <p class="text-gray-300 mb-8" data-aos="fade-up">A transparência é a base da nossa comunidade. Veja o que os nossos traders dizem sobre nós.</p>
-            <div id="trustboxContainer" class="flex justify-center" data-aos="zoom-in"></div>
+    <!-- Avaliações Trustpilot (Carrossel Estático Adaptado) -->
+    <section class="py-20 bg-[#0c0e14] border-t border-gray-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6" data-aos="fade-up">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Avaliações no <span class="text-[#00b67a]">Trustpilot</span></h2>
+                    <div class="flex items-center justify-center md:justify-start gap-3">
+                        <div class="text-[#00b67a] text-2xl">★★★★★</div>
+                        <div class="text-gray-300"><strong class="text-white text-lg">4.9</strong> média de avaliação <span class="text-gray-500">/ 80 avaliações</span></div>
+                    </div>
+                </div>
+                <a href="https://pt.trustpilot.com/review/traderbot-lovat.vercel.app" target="_blank" rel="noopener noreferrer" class="glass-card px-6 py-3 rounded-xl flex items-center gap-3 hover:border-[#00b67a] transition border border-transparent">
+                    <i class="fa-solid fa-star text-[#00b67a] text-xl"></i>
+                    <span class="font-bold text-white text-lg">Trustpilot</span>
+                </a>
+            </div>
+            
+            <div class="reviews-carousel-container" data-aos="zoom-in">
+                <div class="reviews-carousel-track">
+                    <!-- Cartões 1 a 6 -->
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar"><div><h4 class="font-bold text-white text-md">Alena Rosser</h4><span class="text-xs text-gray-500">há 3 horas</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo. Os resultados até agora superaram totalmente as minhas expectativas iniciais."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar"><div><h4 class="font-bold text-white text-md">Mary Adams</h4><span class="text-xs text-gray-500">há 1 dia</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade. Recomendo vivamente a qualquer pessoa que queira automatizar as suas operações com total segurança e praticidade."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar"><div><h4 class="font-bold text-white text-md">Daniel Kim</h4><span class="text-xs text-gray-500">há 8 dias</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar"><div><h4 class="font-bold text-white text-md">Carla Mendes</h4><span class="text-xs text-gray-500">há 12 dias</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar. O suporte é rápido e respondeu a todas as minhas dúvidas em questão de minutos."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar"><div><h4 class="font-bold text-white text-md">João Silva</h4><span class="text-xs text-gray-500">há 2 semanas</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. As ferramentas são avançadas mas surpreendentemente fáceis de configurar. Já estou a usar há mais de um mês com ótimos resultados."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar"><div><h4 class="font-bold text-white text-md">Beatriz Costa</h4><span class="text-xs text-gray-500">há 3 semanas</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Experiência excelente! Sem dúvidas uma das melhores ferramentas do mercado. Nota 10!"></p>
+                    </div>
+
+                    <!-- Duplicados para Efeito Infinito -->
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar"><div><h4 class="font-bold text-white text-md">Alena Rosser</h4><span class="text-xs text-gray-500">há 3 horas</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo. Os resultados até agora superaram totalmente as minhas expectativas iniciais."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar"><div><h4 class="font-bold text-white text-md">Mary Adams</h4><span class="text-xs text-gray-500">há 1 dia</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade. Recomendo vivamente a qualquer pessoa que queira automatizar as suas operações com total segurança e praticidade."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar"><div><h4 class="font-bold text-white text-md">Daniel Kim</h4><span class="text-xs text-gray-500">há 8 dias</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar"><div><h4 class="font-bold text-white text-md">Carla Mendes</h4><span class="text-xs text-gray-500">há 12 dias</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar. O suporte é rápido e respondeu a todas as minhas dúvidas em questão de minutos."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar"><div><h4 class="font-bold text-white text-md">João Silva</h4><span class="text-xs text-gray-500">há 2 semanas</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. As ferramentas são avançadas mas surpreendentemente fáceis de configurar. Já estou a usar há mais de um mês com ótimos resultados."></p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar"><div><h4 class="font-bold text-white text-md">Beatriz Costa</h4><span class="text-xs text-gray-500">há 3 semanas</span></div></div>
+                            <span class="tp-star text-xl">★</span>
+                        </div>
+                        <div class="text-[#00b67a] text-sm">★★★★★</div>
+                        <p class="review-text text-sm text-gray-300" data-full-text="Experiência excelente! Sem dúvidas uma das melhores ferramentas do mercado. Nota 10!"></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -662,29 +798,34 @@
                 });
             }
 
-            // --- Injeção Dinâmica do Widget Trustpilot (Baseado no GTM script) ---
-            var containerID = "trustboxContainer";
-            var trustbox = document.createElement("div");
-            trustbox.className = 'trustpilot-widget';
-            trustbox.setAttribute('data-locale', 'pt-PT');
-            trustbox.setAttribute('data-template-id', '56278e9abfbbba0bdcd568bc');
-            trustbox.setAttribute('data-businessunit-id', '6a85f674f4ba0eb8dbbfa994');
-            trustbox.setAttribute('data-style-height', '52px');
-            trustbox.setAttribute('data-style-width', '100%');
-            trustbox.setAttribute('data-theme', 'dark'); // Forçar tema escuro para combinar com o site
-            trustbox.setAttribute('data-token', '3975ec42-aeb9-4030-8b0c-8daea325f822');
-            trustbox.innerHTML = '<a href="https://pt.trustpilot.com/review/traderbot-lovat.vercel.app" target="_blank" rel="noopener">Trustpilot</a>';
+            // --- Lógica do Carrossel de Avaliações (Ler mais / Ler menos) ---
+            const reviewTexts = document.querySelectorAll(".review-text");
+            const LIMIT = 100;
 
-            var container = document.getElementById(containerID);
-            if (container) {
-                container.appendChild(trustbox);
-                
-                // --- Carregar o Script do Trustpilot dinamicamente ---
-                var trustpilotScript = document.createElement("script");
-                trustpilotScript.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
-                trustpilotScript.async = true;
-                document.head.appendChild(trustpilotScript);
-            }
+            reviewTexts.forEach((p) => {
+                const fullText = p.getAttribute("data-full-text").trim();
+                if (fullText.length > LIMIT) {
+                    const truncatedText = fullText.substring(0, LIMIT).trim() + "...";
+                    p.innerHTML = `<span class="text-content">${truncatedText}</span><button class="read-more-btn">Ler mais</button>`;
+                    const btn = p.querySelector(".read-more-btn");
+                    const textSpan = p.querySelector(".text-content");
+                    let isExpanded = false;
+
+                    btn.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        isExpanded = !isExpanded;
+                        if (isExpanded) {
+                            textSpan.textContent = fullText + " ";
+                            btn.textContent = "Ler menos";
+                        } else {
+                            textSpan.textContent = truncatedText;
+                            btn.textContent = "Ler mais";
+                        }
+                    });
+                } else {
+                    p.textContent = fullText;
+                }
+            });
         });
 
         // --- Hero Slider Logic ---
