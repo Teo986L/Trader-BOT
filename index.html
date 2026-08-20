@@ -130,7 +130,6 @@
         .ticker { display: flex; gap: 2rem; animation: scroll 40s linear infinite; white-space: nowrap; width: max-content; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
-        /* Animação otimizada para não causar reflow no celular */
         .pulse-dot { width: 8px; height: 8px; background: var(--emerald); border-radius: 50%; display: inline-block; margin-right: 6px; position: relative; }
         .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(3); opacity: 0; } }
@@ -256,7 +255,7 @@
     <!-- Ticker -->
     <section class="ticker-wrapper py-3 overflow-hidden" aria-label="Cotações em tempo real"><div class="ticker" id="crypto-ticker"></div></section>
 
-    <!-- Estatísticas (Títulos corrigidos para DIV) -->
+    <!-- Estatísticas -->
     <section class="py-16 px-4 border-b border-gray-800">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div data-aos="fade-up"><div class="text-3xl md:text-4xl font-extrabold gradient-gold mb-2">85%+</div><p class="text-gray-300 text-sm">Taxa de Assertividade Histórica</p></div>
@@ -413,7 +412,7 @@
         </div>
     </section>
 
-    <!-- Testemunhos (H4 alterados para H3) -->
+    <!-- Testemunhos -->
     <section id="testimonials" class="py-20 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -621,6 +620,20 @@
         </div>
     </section>
 
+    <!-- Trustpilot Widget -->
+    <section class="py-16 bg-[#0c0e14] border-t border-gray-800">
+        <div class="max-w-3xl mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Avaliações no <span class="text-[#00b67a]">Trustpilot</span></h2>
+            <p class="text-gray-300 mb-8" data-aos="fade-up">A transparência é a base da nossa comunidade. Veja o que os nossos traders dizem sobre nós.</p>
+            <div class="flex justify-center" data-aos="zoom-in">
+                <!-- Substituir o data-businessunit-id pelo teu ID real do Trustpilot -->
+                <div class="trustpilot-widget" data-locale="pt-BR" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="6a85fe51f3adfa6c2fc86f45" data-style-height="24px" data-style-width="100%" data-theme="dark">
+                    <a href="https://www.trustpilot.com/review/traderbot.com" target="_blank" rel="noopener">Trustpilot</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="py-12 px-4 border-t border-gray-800 bg-black">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
@@ -644,13 +657,15 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <!-- Trustpilot Script -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <script>
         // Inicializa as animações AOS AGORA TAMBÉM NO MOBILE
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof AOS !== 'undefined') {
                 AOS.init({
                     duration: 800,
-                    once: true // A animação acontece apenas uma vez para não ser cansativa
+                    once: true
                 });
             }
         });
