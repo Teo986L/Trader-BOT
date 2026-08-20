@@ -157,7 +157,7 @@
         .reviews-carousel-track { display: flex; gap: 24px; width: max-content; animation: carousel-scroll 40s linear infinite; padding: 10px 0; }
         .reviews-carousel-container:hover .reviews-carousel-track { animation-play-state: paused; }
         @keyframes carousel-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 12px)); } }
-        .review-card { background: rgba(17, 20, 28, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.3s; }
+        .review-card { background: rgba(17, 20, 28, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; width: 340px; max-width: 85vw; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.3s; box-sizing: border-box; }
         .review-card:hover { border-color: rgba(0, 182, 122, 0.3); }
         .review-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background-color: #2d3748; }
         .read-more-btn { color: var(--emerald); font-weight: 700; cursor: pointer; font-size: 13px; background: none; border: none; padding: 0; text-align: left; margin-top: 4px; }
@@ -498,7 +498,8 @@
                 <p class="text-gray-300">Acesso completo à tecnologia Trader BOT. Desbloqueie modos exclusivos conforme o seu plano. Clique em "Assinar" para falar diretamente connosco no WhatsApp.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 items-stretch">
+            <!-- GRID ATUALIZADA PARA lg:grid-cols-3 xl:grid-cols-5 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
                 <div class="glass-card p-6 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up">
                     <span class="text-xs font-bold text-gray-400 mb-2">PLANO INICIAL</span>
                     <h4 class="text-xl font-bold text-white mb-4">7 Dias</h4>
