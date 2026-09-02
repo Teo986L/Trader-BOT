@@ -87,84 +87,633 @@
     <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
 
     <style>
+        /* ===== VARIÁVEIS GLOBAIS ===== */
         :root {
+            /* Cores */
             --bg-dark: #08090d;
             --bg-card: #11141c;
+            --bg-dark-alt: #0c0e14;
+            --bg-black: #000;
             --gold: #f0b90b;
             --gold-light: #fcd535;
             --emerald: #0ecb81;
             --rose: #f6465d;
             --text-main: #eaecef;
             --text-muted: #848e9c;
+            --text-gray-300: #d1d5db;
+            --text-gray-400: #9ca3af;
+            --text-gray-500: #6b7280;
+            --text-gray-600: #4b5563;
+            --text-gray-700: #374151;
+            --text-gray-800: #1f2937;
+            --text-gray-900: #111827;
+            --border-gray: rgba(255,255,255,0.05);
+            --border-gray-dark: rgba(255,255,255,0.06);
+
+            /* Z-Index Scale */
+            --z-base: 0;
+            --z-dropdown: 10;
+            --z-fixed: 20;
+            --z-modal-overlay: 90;
+            --z-modal: 100;
+
+            /* Spacing Scale */
+            --spacing-xs: 0.5rem;   /* 8px */
+            --spacing-sm: 1rem;     /* 16px */
+            --spacing-md: 1.5rem;   /* 24px */
+            --spacing-lg: 2rem;     /* 32px */
+            --spacing-xl: 2.5rem;   /* 40px */
+            --spacing-2xl: 3rem;    /* 48px */
+            --spacing-3xl: 4rem;    /* 64px */
+            --spacing-4xl: 5rem;    /* 80px */
+
+            /* Transições */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.25s ease;
+            --transition-smooth: 0.3s ease-in-out;
+            --transition-slow: 0.4s ease-in-out;
+            --transition-slider: 1.5s ease-in-out;
+
+            /* Tipografia */
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'Courier New', 'Courier', monospace;
+            --font-size-xs: 0.75rem;      /* 12px */
+            --font-size-sm: 0.875rem;     /* 14px */
+            --font-size-base: 1rem;       /* 16px */
+            --font-size-lg: 1.125rem;     /* 18px */
+            --font-size-xl: 1.25rem;      /* 20px */
+            --font-size-2xl: 1.5rem;      /* 24px */
+            --font-size-3xl: 1.875rem;    /* 30px */
+            --font-size-4xl: 2.25rem;     /* 36px */
+            --font-size-5xl: 3rem;        /* 48px */
+
+            /* Border Radius */
+            --radius-sm: 0.5rem;
+            --radius-md: 1rem;
+            --radius-lg: 1.5rem;
+            --radius-xl: 2rem;
+            --radius-full: 9999px;
+
+            /* Box Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --shadow-2xl: 0 4px 15px rgba(0,0,0,0.3);
+            --shadow-gold: 0 4px 20px rgba(240, 185, 11, 0.3);
+            --shadow-gold-lg: 0 8px 25px rgba(240, 185, 11, 0.5);
+            --shadow-glass: -5px 0 20px rgba(0,0,0,0.5);
         }
-        * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; margin: 0; }
 
-        a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        /* ===== BREAKPOINTS (Tailwind Default) ===== */
+        /* sm: 640px | md: 768px | lg: 1024px | xl: 1280px | 2xl: 1536px */
 
-        .slider-container { position: relative; width: 100%; height: 100vh; min-height: 640px; overflow: hidden; }
-        @supports (height: 100svh) { .slider-container { height: 100svh; } }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; }
-        .slide.active { opacity: 1; }
-        .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,9,13,0.96) 0%, rgba(8,9,13,0.82) 40%, rgba(8,9,13,0.35) 100%); }
-        .slide-content { position: relative; z-index: 10; padding-left: 5%; padding-right: 5%; }
-        
-        .slider-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 20; }
-        .dot-wrapper { width: 24px; height: 24px; background: transparent; border: none; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-        .dot { width: 10px; height: 10px; background: rgba(255,255,255,0.3); border-radius: 50%; transition: all 0.3s; }
-        .dot.active { background: var(--gold); width: 24px; border-radius: 5px; }
+        /* ===== RESET E BASE ===== */
+        * {
+            font-family: var(--font-sans);
+            box-sizing: border-box;
+        }
 
-        .gradient-gold { background: linear-gradient(90deg, var(--gold), var(--gold-light)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .glass-card { background: rgba(17, 20, 28, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(180deg, var(--gold), var(--gold-light)); color: #000; font-weight: 700; border: 1px solid transparent; transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; box-shadow: 0 4px 20px rgba(240, 185, 11, 0.3); text-decoration: none; cursor: pointer; }
-        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(240, 185, 11, 0.5); filter: brightness(1.03); }
-        .btn-gold:active { transform: translateY(0); }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            margin: 0;
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+        }
 
-        .btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid #4b5563; color: #fff; background: transparent; font-weight: 600; transition: background 0.25s ease, border-color 0.25s ease; text-decoration: none; }
-        .btn-outline:hover { background: rgba(255,255,255,0.06); border-color: var(--gold); }
+        /* ===== ACESSIBILIDADE ===== */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+            border-radius: var(--radius-sm);
+        }
 
-        .btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: #1f2937; color: #fff; font-weight: 700; padding: 0.75rem 1.5rem; border: 1px solid transparent; transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease; text-decoration: none; cursor: pointer; box-shadow: 0 4px 20px rgba(31, 41, 55, 0.3); }
-        .btn-whatsapp:hover { background: #25D366; color: #06210f; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); }
+        /* ===== ANIMAÇÕES REUTILIZÁVEIS ===== */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
-        .ticker-wrapper { background: #000; border-bottom: 1px solid #1e2126; }
-        .ticker { display: flex; gap: 2rem; animation: scroll 40s linear infinite; white-space: nowrap; width: max-content; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        
-        .pulse-dot { width: 8px; height: 8px; background: var(--emerald); border-radius: 50%; display: inline-block; margin-right: 6px; position: relative; }
-        .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(3); opacity: 0; } }
+        @keyframes carousel-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 12px)); }
+        }
 
-        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s ease; }
-        .faq-item.active .faq-answer { max-height: 320px; padding-top: 1rem; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); }
-        .faq-icon { transition: transform 0.3s ease; }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(3); opacity: 0; }
+        }
 
-        .plan-highlight { border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(240, 185, 11, 0.15); }
-        @media (min-width: 1024px) { .plan-highlight { transform: scale(1.03); } }
+        /* ===== SLIDER HERO ===== */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 640px;
+            overflow: hidden;
+        }
 
-        .indicator-row:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .step-badge { width: 2.75rem; height: 2.75rem; flex-shrink: 0; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; background: rgba(240,185,11,0.1); color: var(--gold); border: 1px solid rgba(240,185,11,0.3); }
-        .wa-bubble { background: #1f2c34; border-radius: 12px 12px 12px 0; padding: 16px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .wa-bubble::before { content: ''; position: absolute; bottom: 0; left: -10px; width: 10px; height: 10px; background: #1f2c34; clip-path: polygon(100% 0, 0 100%, 100% 100%); }
+        @supports (height: 100svh) {
+            .slider-container {
+                height: 100svh;
+            }
+        }
 
-        #mobile-menu { position: fixed; top: 0; right: 0; height: 100%; width: 280px; max-width: 80vw; background: #0c0e14; z-index: 100; transform: translateX(100%); transition: transform 0.3s ease-in-out; border-left: 1px solid rgba(255,255,255,0.1); box-shadow: -5px 0 20px rgba(0,0,0,0.5); }
-        #mobile-menu.active { transform: translateX(0); }
-        #menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 90; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-        #menu-overlay.active { opacity: 1; visibility: visible; }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity var(--transition-slider);
+        }
 
-        /* === CSS DO CARROSSEL DE AVALIAÇÕES === */
-        .reviews-carousel-container { overflow: hidden; width: 100%; mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); }
-        .reviews-carousel-track { display: flex; gap: 24px; width: max-content; animation: carousel-scroll 40s linear infinite; padding: 10px 0; }
-        .reviews-carousel-container:hover .reviews-carousel-track { animation-play-state: paused; }
-        @keyframes carousel-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 12px)); } }
-        .review-card { background: rgba(17, 20, 28, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; width: 340px; max-width: 85vw; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.3s; box-sizing: border-box; }
-        .review-card:hover { border-color: rgba(0, 182, 122, 0.3); }
-        .review-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background-color: #2d3748; }
-        .read-more-btn { color: var(--emerald); font-weight: 700; cursor: pointer; font-size: 13px; background: none; border: none; padding: 0; text-align: left; margin-top: 4px; }
-        .read-more-btn:hover { text-decoration: underline; }
-        .tp-star { color: #00b67a; }
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(8,9,13,0.96) 0%, rgba(8,9,13,0.82) 40%, rgba(8,9,13,0.35) 100%);
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: var(--z-base);
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: var(--z-dropdown);
+        }
+
+        .dot-wrapper {
+            width: 24px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transition: all var(--transition-normal);
+        }
+
+        .dot.active {
+            background: var(--gold);
+            width: 24px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* ===== GRADIENTES ===== */
+        .gradient-gold {
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ===== GLASS MORPHISM ===== */
+        .glass-card {
+            background: rgba(17, 20, 28, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-gray);
+            transition: border-color var(--transition-normal);
+        }
+
+        .glass-card:hover {
+            border-color: var(--border-gray-dark);
+        }
+
+        /* ===== BOTÕES ===== */
+        .btn-base {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), filter var(--transition-normal);
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 0;
+            padding: 0;
+        }
+
+        .btn-base:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(180deg, var(--gold), var(--gold-light));
+            color: #000;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), filter var(--transition-normal);
+            box-shadow: var(--shadow-gold);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-gold:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold-lg);
+            filter: brightness(1.03);
+        }
+
+        .btn-gold:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .btn-gold:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid var(--text-gray-600);
+            color: #fff;
+            background: transparent;
+            font-weight: 600;
+            transition: background var(--transition-normal), border-color var(--transition-normal);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover:not(:disabled) {
+            background: rgba(255,255,255,0.06);
+            border-color: var(--gold);
+        }
+
+        .btn-outline:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: var(--text-gray-800);
+            color: #fff;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid transparent;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-whatsapp:hover:not(:disabled) {
+            background: #25D366;
+            color: #06210f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== TICKER ===== */
+        .ticker-wrapper {
+            background: var(--bg-black);
+            border-bottom: 1px solid #1e2126;
+        }
+
+        .ticker {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 40s linear infinite;
+            white-space: nowrap;
+            width: max-content;
+        }
+
+        /* ===== PULSE DOT ===== */
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--emerald);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            position: relative;
+        }
+
+        .pulse-dot::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: var(--emerald);
+            animation: pulse 2s infinite;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 320px;
+            padding-top: 1rem;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-icon {
+            transition: transform var(--transition-normal);
+        }
+
+        /* ===== PRICING ===== */
+        .plan-highlight {
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(240, 185, 11, 0.15);
+        }
+
+        @media (min-width: 1024px) {
+            .plan-highlight {
+                transform: scale(1.03);
+            }
+        }
+
+        /* ===== INDICATORS ===== */
+        .indicator-row:not(:last-child) {
+            border-bottom: 1px solid var(--border-gray-dark);
+        }
+
+        /* ===== STEP BADGE ===== */
+        .step-badge {
+            width: 2.75rem;
+            height: 2.75rem;
+            flex-shrink: 0;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: rgba(240,185,11,0.1);
+            color: var(--gold);
+            border: 1px solid rgba(240,185,11,0.3);
+        }
+
+        /* ===== WHATSAPP BUBBLE ===== */
+        .wa-bubble {
+            background: #1f2c34;
+            border-radius: 12px 12px 12px 0;
+            padding: 16px;
+            position: relative;
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .wa-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            width: 10px;
+            height: 10px;
+            background: #1f2c34;
+            clip-path: polygon(100% 0, 0 100%, 100% 100%);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 280px;
+            max-width: 80vw;
+            background: #0c0e14;
+            z-index: var(--z-modal);
+            transform: translateX(100%);
+            transition: transform var(--transition-normal);
+            border-left: 1px solid rgba(255,255,255,0.1);
+            box-shadow: var(--shadow-glass);
+        }
+
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        #menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: var(--z-modal-overlay);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-normal), visibility var(--transition-normal);
+        }
+
+        #menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ===== CARROSSEL DE AVALIAÇÕES ===== */
+        .reviews-carousel-container {
+            overflow: hidden;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .reviews-carousel-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            animation: carousel-scroll 40s linear infinite;
+            padding: 10px 0;
+        }
+
+        .reviews-carousel-container:hover .reviews-carousel-track {
+            animation-play-state: paused;
+        }
+
+        .review-card {
+            background: rgba(17, 20, 28, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-gray);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            width: 340px;
+            max-width: 85vw;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: border-color var(--transition-normal);
+            box-sizing: border-box;
+        }
+
+        .review-card:hover {
+            border-color: rgba(0, 182, 122, 0.3);
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--text-gray-800);
+        }
+
+        .read-more-btn {
+            color: var(--emerald);
+            font-weight: 700;
+            cursor: pointer;
+            font-size: var(--font-size-xs);
+            background: none;
+            border: none;
+            padding: 0;
+            text-align: left;
+            margin-top: 4px;
+            transition: text-decoration var(--transition-fast);
+        }
+
+        .read-more-btn:hover {
+            text-decoration: underline;
+        }
+
+        .tp-star {
+            color: #00b67a;
+        }
+
+        /* ===== HEADER STICKY ===== */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: var(--z-fixed);
+            padding: 1rem;
+            transition: all var(--transition-smooth);
+        }
+
+        #header.bg-black {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .slider-container,
+            .ticker-wrapper,
+            #header,
+            .slider-dots,
+            #mobile-menu,
+            .reviews-carousel-container {
+                display: none;
+            }
+
+            a {
+                color: #0066cc;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+
+            img {
+                max-width: 100%;
+            }
+
+            .glass-card {
+                border: 1px solid #ccc;
+                background: white;
+            }
+        }
+
+        /* ===== RESPONSIVE AJUSTES ===== */
+        @media (max-width: 768px) {
+            :root {
+                --font-size-5xl: 2rem;
+                --font-size-4xl: 1.5rem;
+                --font-size-2xl: 1.375rem;
+                --font-size-lg: 1rem;
+            }
+
+            .slider-content {
+                padding: var(--spacing-sm);
+            }
+
+            /* Aumentar cards em mobile */
+            .glass-card {
+                padding: 1.5rem !important;
+            }
+
+            /* Melhorar grid de pricing em mobile */
+            .grid.grid-cols-1 {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            /* Melhorar cards em tablet */
+            .glass-card {
+                padding: 1.25rem;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            /* Desktop: cards maiores */
+            .glass-card {
+                min-height: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -287,18 +836,18 @@
                 <h2 class="text-3xl md:text-5xl font-bold mb-4">A Tecnologia por Trás do <span class="gradient-gold">Trader BOT</span></h2>
                 <p class="text-gray-300 max-w-2xl mx-auto">Não somos um bot de sorte. Somos um motor de análise institucional condensado para o seu telemóvel — cada sinal passa por um pipeline de validação antes de chegar até si.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <div class="glass-card p-8 rounded-2xl hover:border-[#f0b90b] transition border border-transparent" data-aos="fade-up">
+            <div class="grid md:grid-cols-3 gap-10 mb-12">
+                <div class="glass-card p-9 rounded-2xl hover:border-[#f0b90b] transition border border-transparent" data-aos="fade-up">
                     <div class="text-[#f0b90b] text-3xl mb-6"><i class="fa-solid fa-cubes-stacked" aria-hidden="true"></i></div>
                     <h3 class="text-xl font-bold mb-3">1. Lógica de 4 Camadas</h3>
                     <p class="text-gray-300 text-sm leading-relaxed">Análise Macro (Tendência), Estrutura (Pullback), Gatilho (Histogram Shift) e Micro Timing. As quatro camadas precisam concordar simultaneamente para o sinal ser gerado — se uma reprovar, o sinal é descartado.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl hover:border-[#f0b90b] transition border border-transparent" data-aos="fade-up" data-aos-delay="150">
+                <div class="glass-card p-9 rounded-2xl hover:border-[#f0b90b] transition border border-transparent" data-aos="fade-up" data-aos-delay="150">
                     <div class="text-[#f0b90b] text-3xl mb-6"><i class="fa-solid fa-water" aria-hidden="true"></i></div>
                     <h3 class="text-xl font-bold mb-3">2. Caça à Liquidez</h3>
                     <p class="text-gray-300 text-sm leading-relaxed">O bot mapeia para onde o preço tende a ir, identificando zonas de suporte, resistência e números psicológicos redondos antes de disparar a entrada, evitando operar contra zonas de alta liquidez.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl hover:border-[#f0b90b] transition border border-transparent" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-card p-9 rounded-2xl hover:border-[#f0b90b] transition border border-transparent" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-[#f0b90b] text-3xl mb-6"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i></div>
                     <h3 class="text-xl font-bold mb-3">3. DeMarker &amp; ADX Multi-Timeframe</h3>
                     <p class="text-gray-300 text-sm leading-relaxed">Mede a exaustão do mercado em mais de um timeframe simultaneamente. Não entramos em sobrecompra/sobrevenda, e garantimos que há força real (ADX) na tendência antes de agir.</p>
@@ -340,9 +889,9 @@
                 <h2 class="text-3xl md:text-5xl font-bold mb-4">Escolha o seu <span class="gradient-gold">Estilo de Operação</span></h2>
                 <p class="text-gray-300">Do scalping de 1 minuto ao posicionamento de longo prazo — cada modo tem regras próprias de timeframe, força de tendência e score mínimo.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-2xl border-b-4 border-purple-500 hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in">
-                    <h3 class="text-2xl mb-2 font-bold">🎯 SNIPER</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card p-8 rounded-2xl border-b-4 border-purple-500 hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in">
+                    <h3 class="text-2xl mb-3 font-bold">🎯 SNIPER</h3>
                     <p class="text-gray-300 text-sm mb-6 font-medium">Entradas Cirúrgicas (1–15 min)</p>
                     <ul class="text-xs text-gray-400 space-y-3 flex-grow">
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M1, M5, M15</li>
@@ -353,8 +902,8 @@
                     </ul>
                     <p class="text-xs text-gray-400 mt-4 pt-4 border-t border-gray-800">Ideal para quem acompanha o gráfico ao vivo e quer entradas rápidas de scalping.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl border-b-4 border-[#f0b90b] hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in" data-aos-delay="150">
-                    <h3 class="text-2xl mb-2 font-bold">🏹 CAÇADOR</h3>
+                <div class="glass-card p-8 rounded-2xl border-b-4 border-[#f0b90b] hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in" data-aos-delay="150">
+                    <h3 class="text-2xl mb-3 font-bold">🏹 CAÇADOR</h3>
                     <p class="text-gray-300 text-sm mb-6 font-medium">Ondas Médias (5–60 min)</p>
                     <ul class="text-xs text-gray-400 space-y-3 flex-grow">
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M5 a H4</li>
@@ -364,8 +913,8 @@
                     </ul>
                     <p class="text-xs text-gray-400 mt-4 pt-4 border-t border-gray-800">Para quem quer menos ruído que o SNIPER, mantendo várias oportunidades por dia.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl border-b-4 border-blue-500 hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in" data-aos-delay="300">
-                    <h3 class="text-2xl mb-2 font-bold">🎣 PESCADOR</h3>
+                <div class="glass-card p-8 rounded-2xl border-b-4 border-blue-500 hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in" data-aos-delay="300">
+                    <h3 class="text-2xl mb-3 font-bold">🎣 PESCADOR</h3>
                     <p class="text-gray-300 text-sm mb-6 font-medium">Grandes Ondas (Horas a Dias)</p>
                     <ul class="text-xs text-gray-400 space-y-3 flex-grow">
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes H1 to W1</li>
@@ -375,8 +924,8 @@
                     </ul>
                     <p class="text-xs text-gray-400 mt-4 pt-4 border-t border-gray-800">Para quem prefere posições de swing trade com gestão mais espaçada.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl border-b-4 border-emerald-500 hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in" data-aos-delay="450">
-                    <h3 class="text-2xl mb-2 font-bold">🐋 BALEEIRO</h3>
+                <div class="glass-card p-8 rounded-2xl border-b-4 border-emerald-500 hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in" data-aos-delay="450">
+                    <h3 class="text-2xl mb-3 font-bold">🐋 BALEEIRO</h3>
                     <p class="text-gray-300 text-sm mb-6 font-medium">Posicionamento (Dias a Meses)</p>
                     <ul class="text-xs text-gray-400 space-y-3 flex-grow">
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M15 to MN1</li>
@@ -433,33 +982,33 @@
                 <h2 class="text-3xl md:text-5xl font-bold mb-4">O que dizem os <span class="gradient-gold">Nossos Traders</span></h2>
                 <p class="text-gray-300 max-w-2xl mx-auto">Resultados reais de membros da nossa comunidade VIP.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-2xl flex flex-col" data-aos="fade-up">
-                    <div class="flex items-center gap-4 mb-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up">
+                    <div class="flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-[#f0b90b]">J</div>
                         <div><h3 class="font-bold text-white">João M.</h3><p class="text-xs text-gray-400">Assinante 3 Meses</p></div>
                     </div>
                     <p class="text-sm text-gray-300 flex-grow">"O modo Caçador mudou a minha forma de operar. Passei a ter muito mais segurança e não entro mais no mercado no escuro."</p>
                     <div class="mt-4 text-[#f0b90b] text-sm">★★★★★</div>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="150">
-                    <div class="flex items-center gap-4 mb-4">
+                <div class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="150">
+                    <div class="flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-[#0ecb81]">A</div>
                         <div><h3 class="font-bold text-white">Ana P.</h3><p class="text-xs text-gray-400">Assinante 1 Mês</p></div>
                     </div>
                     <p class="text-sm text-gray-300 flex-grow">"Os avisos de 24h antes de expirar o plano são super úteis. O suporte no WhatsApp é rápido e os sinais são muito precisos."</p>
                     <div class="mt-4 text-[#f0b90b] text-sm">★★★★★</div>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center gap-4 mb-4">
+                <div class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-blue-400">C</div>
                         <div><h3 class="font-bold text-white">Carlos S.</h3><p class="text-xs text-gray-400">Assinante 1 Ano</p></div>
                     </div>
                     <p class="text-sm text-gray-300 flex-grow">"A análise de 4 camadas faz toda a diferença. O filtro DeMarker evita que eu entre nas falsas rupturas. Melhor investimento que fiz."</p>
                     <div class="mt-4 text-[#f0b90b] text-sm">★★★★★</div>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="450">
-                    <div class="flex items-center gap-4 mb-4">
+                <div class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="450">
+                    <div class="flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-purple-500">M</div>
                         <div><h3 class="font-bold text-white">Marta L.</h3><p class="text-xs text-gray-400">Assinante 6 Meses</p></div>
                     </div>
@@ -500,10 +1049,9 @@
                 <p class="text-gray-300">Acesso completo à tecnologia Trader BOT. Desbloqueie modos exclusivos conforme o seu plano. Clique em "Assinar" para falar diretamente connosco no WhatsApp.</p>
             </div>
 
-            <!-- GRID ATUALIZADA PARA lg:grid-cols-3 xl:grid-cols-5 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
-                <div class="glass-card p-6 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up">
-                    <span class="text-xs font-bold text-gray-400 mb-2">PLANO INICIAL</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 items-stretch">
+                <div class="glass-card p-8 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up">
+                    <span class="text-xs font-bold text-gray-400 mb-3">PLANO INICIAL</span>
                     <h4 class="text-xl font-bold text-white mb-4">7 Dias</h4>
                     <div class="mb-6"><span class="text-4xl font-extrabold gradient-gold">$ 9</span></div>
                     <p class="text-xs text-gray-400 font-bold mb-4">MODOS DESBLOQUEADOS:</p>
@@ -515,8 +1063,8 @@
                     </ul>
                     <a href="https://wa.me/244953710460?text=Ol%C3%A1%2C%20quero%20assinar%20o%20plano%20de%207%20Dias%20(%249)%20do%20Trader%20BOT." target="_blank" rel="noopener" class="btn-gold text-center py-3 rounded-xl font-bold text-sm"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Assinar</a>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up" data-aos-delay="100">
-                    <span class="text-xs font-bold text-gray-400 mb-2">PLANO MENSAL</span>
+                <div class="glass-card p-8 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <span class="text-xs font-bold text-gray-400 mb-3">PLANO MENSAL</span>
                     <h4 class="text-xl font-bold text-white mb-4">1 Mês</h4>
                     <div class="mb-6"><span class="text-4xl font-extrabold gradient-gold">$ 19</span></div>
                     <p class="text-xs text-gray-400 font-bold mb-4">MODOS DESBLOQUEADOS:</p>
@@ -529,9 +1077,9 @@
                     </ul>
                     <a href="https://wa.me/244953710460?text=Ol%C3%A1%2C%20quero%20assinar%20o%20plano%20de%201%20M%C3%AAs%20(%2419)%20do%20Trader%20BOT." target="_blank" rel="noopener" class="btn-gold text-center py-3 rounded-xl font-bold text-sm"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Assinar</a>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col hover:scale-105 transition duration-300 relative plan-highlight" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-card p-8 rounded-2xl flex flex-col hover:scale-105 transition duration-300 relative plan-highlight" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#f0b90b] text-black text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">MAIS ESCOLHIDO</div>
-                    <span class="text-xs font-bold text-[#f0b90b] mb-2">PLANO TRIMESTRAL</span>
+                    <span class="text-xs font-bold text-[#f0b90b] mb-3">PLANO TRIMESTRAL</span>
                     <h4 class="text-xl font-bold text-white mb-4">3 Meses</h4>
                     <div class="mb-6"><span class="text-4xl font-extrabold gradient-gold">$ 49</span></div>
                     <p class="text-xs text-gray-400 font-bold mb-4">MODOS DESBLOQUEADOS:</p>
@@ -545,8 +1093,8 @@
                     </ul>
                     <a href="https://wa.me/244953710460?text=Ol%C3%A1%2C%20quero%20assinar%20o%20plano%20de%203%20Meses%20(%2449)%20do%20Trader%20BOT." target="_blank" rel="noopener" class="btn-gold text-center py-3 rounded-xl font-bold text-sm"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Assinar</a>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up" data-aos-delay="300">
-                    <span class="text-xs font-bold text-gray-400 mb-2">PLANO SEMESTRAL</span>
+                <div class="glass-card p-8 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <span class="text-xs font-bold text-gray-400 mb-3">PLANO SEMESTRAL</span>
                     <h4 class="text-xl font-bold text-white mb-4">6 Meses</h4>
                     <div class="mb-6"><span class="text-4xl font-extrabold gradient-gold">$ 89</span></div>
                     <p class="text-xs text-gray-400 font-bold mb-4">MODOS DESBLOQUEADOS:</p>
@@ -559,8 +1107,8 @@
                     </ul>
                     <a href="https://wa.me/244953710460?text=Ol%C3%A1%2C%20quero%20assinar%20o%20plano%20de%206%20Meses%20(%2489)%20do%20Trader%20BOT." target="_blank" rel="noopener" class="btn-gold text-center py-3 rounded-xl font-bold text-sm"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Assinar</a>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up" data-aos-delay="400">
-                    <span class="text-xs font-bold text-gray-400 mb-2">PLANO ANUAL</span>
+                <div class="glass-card p-8 rounded-2xl flex flex-col hover:scale-105 transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <span class="text-xs font-bold text-gray-400 mb-3">PLANO ANUAL</span>
                     <h4 class="text-xl font-bold text-white mb-4">1 Ano</h4>
                     <div class="mb-6"><span class="text-4xl font-extrabold gradient-gold">$ 149</span></div>
                     <p class="text-xs text-gray-400 font-bold mb-4">MODOS DESBLOQUEADOS:</p>
@@ -635,7 +1183,7 @@
         </div>
     </section>
 
-    <!-- Avaliações em Carrossel (Sem Link Externo) -->
+    <!-- Avaliações em Carrossel -->
     <section class="py-20 bg-[#0c0e14] border-t border-gray-800 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-12 gap-6" data-aos="fade-up">
@@ -648,7 +1196,6 @@
             
             <div class="reviews-carousel-container" data-aos="zoom-in">
                 <div class="reviews-carousel-track">
-                    <!-- Cartões 1 a 6 -->
                     <div class="review-card">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar"><div><h4 class="font-bold text-white text-md">Alena Rosser</h4><span class="text-xs text-gray-500">há 3 horas</span></div></div>
@@ -657,7 +1204,6 @@
                         <div class="text-[#00b67a] text-sm">★★★★★</div>
                         <p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo. Os resultados até agora superaram totalmente as minhas expectativas iniciais."></p>
                     </div>
-
                     <div class="review-card">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar"><div><h4 class="font-bold text-white text-md">Mary Adams</h4><span class="text-xs text-gray-500">há 1 dia</span></div></div>
@@ -666,7 +1212,6 @@
                         <div class="text-[#00b67a] text-sm">★★★★★</div>
                         <p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade. Recomendo vivamente a qualquer pessoa que queira automatizar as suas operações com total segurança e praticidade."></p>
                     </div>
-
                     <div class="review-card">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar"><div><h4 class="font-bold text-white text-md">Daniel Kim</h4><span class="text-xs text-gray-500">há 8 dias</span></div></div>
@@ -675,7 +1220,6 @@
                         <div class="text-[#00b67a] text-sm">★★★★★</div>
                         <p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p>
                     </div>
-
                     <div class="review-card">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar"><div><h4 class="font-bold text-white text-md">Carla Mendes</h4><span class="text-xs text-gray-500">há 12 dias</span></div></div>
@@ -684,7 +1228,6 @@
                         <div class="text-[#00b67a] text-sm">★★★★★</div>
                         <p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar. O suporte é rápido e respondeu a todas as minhas dúvidas em questão de minutos."></p>
                     </div>
-
                     <div class="review-card">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar"><div><h4 class="font-bold text-white text-md">João Silva</h4><span class="text-xs text-gray-500">há 2 semanas</span></div></div>
@@ -693,62 +1236,6 @@
                         <div class="text-[#00b67a] text-sm">★★★★★</div>
                         <p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. As ferramentas são avançadas mas surpreendentemente fáceis de configurar. Já estou a usar há mais de um mês com ótimos resultados."></p>
                     </div>
-
-                    <div class="review-card">
-                        <div class="flex justify-between items-start">
-                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar"><div><h4 class="font-bold text-white text-md">Beatriz Costa</h4><span class="text-xs text-gray-500">há 3 semanas</span></div></div>
-                            <span class="tp-star text-xl">★</span>
-                        </div>
-                        <div class="text-[#00b67a] text-sm">★★★★★</div>
-                        <p class="review-text text-sm text-gray-300" data-full-text="Experiência excelente! Sem dúvidas uma das melhores ferramentas do mercado. Nota 10!"></p>
-                    </div>
-
-                    <!-- Duplicados para Efeito Infinito -->
-                    <div class="review-card">
-                        <div class="flex justify-between items-start">
-                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar"><div><h4 class="font-bold text-white text-md">Alena Rosser</h4><span class="text-xs text-gray-500">há 3 horas</span></div></div>
-                            <span class="tp-star text-xl">★</span>
-                        </div>
-                        <div class="text-[#00b67a] text-sm">★★★★★</div>
-                        <p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo. Os resultados até agora superaram totalmente as minhas expectativas iniciais."></p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="flex justify-between items-start">
-                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar"><div><h4 class="font-bold text-white text-md">Mary Adams</h4><span class="text-xs text-gray-500">há 1 dia</span></div></div>
-                            <span class="tp-star text-xl">★</span>
-                        </div>
-                        <div class="text-[#00b67a] text-sm">★★★★★</div>
-                        <p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade. Recomendo vivamente a qualquer pessoa que queira automatizar as suas operações com total segurança e praticidade."></p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="flex justify-between items-start">
-                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar"><div><h4 class="font-bold text-white text-md">Daniel Kim</h4><span class="text-xs text-gray-500">há 8 dias</span></div></div>
-                            <span class="tp-star text-xl">★</span>
-                        </div>
-                        <div class="text-[#00b67a] text-sm">★★★★★</div>
-                        <p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="flex justify-between items-start">
-                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar"><div><h4 class="font-bold text-white text-md">Carla Mendes</h4><span class="text-xs text-gray-500">há 12 dias</span></div></div>
-                            <span class="tp-star text-xl">★</span>
-                        </div>
-                        <div class="text-[#00b67a] text-sm">★★★★★</div>
-                        <p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar. O suporte é rápido e respondeu a todas as minhas dúvidas em questão de minutos."></p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="flex justify-between items-start">
-                            <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar"><div><h4 class="font-bold text-white text-md">João Silva</h4><span class="text-xs text-gray-500">há 2 semanas</span></div></div>
-                            <span class="tp-star text-xl">★</span>
-                        </div>
-                        <div class="text-[#00b67a] text-sm">★★★★★</div>
-                        <p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. As ferramentas são avançadas mas surpreendentemente fáceis de configurar. Já estou a usar há mais de um mês com ótimos resultados."></p>
-                    </div>
-
                     <div class="review-card">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar"><div><h4 class="font-bold text-white text-md">Beatriz Costa</h4><span class="text-xs text-gray-500">há 3 semanas</span></div></div>
@@ -795,7 +1282,7 @@
                 });
             }
 
-            // --- Lógica do Carrossel de Avaliações (Ler mais / Ler menos) ---
+            // --- Lógica do Carrossel de Avaliações ---
             const reviewTexts = document.querySelectorAll(".review-text");
             const LIMIT = 100;
 
@@ -842,7 +1329,11 @@
 
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
-            if (window.scrollY > 50) { header.classList.add('bg-black', 'shadow-xl'); } else { header.classList.remove('bg-black', 'shadow-xl'); }
+            if (window.scrollY > 50) { 
+                header.classList.add('bg-black', 'shadow-xl'); 
+            } else { 
+                header.classList.remove('bg-black', 'shadow-xl'); 
+            }
         });
 
         async function fetchCryptoData() {
@@ -880,8 +1371,17 @@
         const menuOverlay = document.getElementById('menu-overlay');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        function openMenu() { mobileMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeMenu() { mobileMenu.classList.remove('active'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+        function openMenu() { 
+            mobileMenu.classList.add('active'); 
+            menuOverlay.classList.add('active'); 
+            document.body.style.overflow = 'hidden'; 
+        }
+        
+        function closeMenu() { 
+            mobileMenu.classList.remove('active'); 
+            menuOverlay.classList.remove('active'); 
+            document.body.style.overflow = ''; 
+        }
 
         menuBtn.addEventListener('click', openMenu);
         closeMenuBtn.addEventListener('click', closeMenu);
