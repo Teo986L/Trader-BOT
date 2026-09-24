@@ -488,7 +488,7 @@
             </div>
             <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">DeMarker (DeM)</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Mede exaustão de compra/venda em múltiplos timeframes (M1 + M5 nas camadas mais rápidas). Bloqueia entradas em zonas de sobrecompra/sobrevenda extrema.</div></div>
-                <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">ADX</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Confirma a força da tendência antes da entrada. A macro tendência exige ADX ≥ 20 em todos os modos, enquanto os gatilhos variam de ≥ 18 (BALEEIRO) a ≥ 19 (SNIPER/CAÇADOR/PESCADOR) para evitar operar em mercado lateralizado.</div></div>
+                <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">ADX</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Confirma a força da tendência antes da entrada. A macro tendência exige ADX ≥ 20 (SNIPER, CAÇADOR, PESCADOR) ou ≥ 18 (BALEEIRO). Os gatilhos variam de ≥ 18 (BALEEIRO) a ≥ 19 (SNIPER/CAÇADOR/PESCADOR). O micro timing exige ≥ 20 (CAÇADOR, PESCADOR, BALEEIRO). Isto evita operar em mercado lateralizado.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">MACD</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Usado como gatilho de entrada (cruzamento e histogram shift), sinalizando o momento exato de mudança de momentum.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">RSI</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Camada adicional de confirmação de força relativa, cruzada com os demais indicadores para reduzir sinais falsos.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">Score do Modo</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Cada modo pondera os timeframes de forma diferente (ex.: M15/M5/M1) e só publica o sinal se a pontuação combinada atingir o mínimo exigido pelo modo.</div></div>
@@ -506,12 +506,12 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
                 <div class="glass-card p-5 sm:p-6 rounded-2xl border-b-4 border-purple-500 hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in">
                     <h3 class="text-lg sm:text-2xl mb-1 sm:mb-2 font-bold">🎯 SNIPER</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6 font-medium">Entradas Cirúrgicas (1– 4H)</p>
+                    <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6 font-medium">Entradas Cirúrgicas (1–15 min)</p>
                     <ul class="text-[11px] sm:text-xs text-gray-400 space-y-2 sm:space-y-3 flex-grow">
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M1, M5, M15</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Foco em Cruzamento MACD</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Bloqueio DeMarker M1+M5</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Macro e Gatilho: ≥ 19</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Macro: ≥ 18 | Gatilho: ≥ 18 | Micro: ≥ 20</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Score Mínimo: 55</li>
                     </ul>
                     <p class="text-[10px] sm:text-xs text-gray-400 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-800">Ideal para quem acompanha o gráfico ao vivo e quer entradas rápidas de scalping.</p>
@@ -522,7 +522,7 @@
                     <ul class="text-[11px] sm:text-xs text-gray-400 space-y-2 sm:space-y-3 flex-grow">
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M5 a H4</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Micro Timing Obrigatório (M1)</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Macro: ≥ 20 | Micro: ≥ 20</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Macro: ≥ 20 | Gatilho: ≥ 19 | Micro: ≥ 20</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Score Mínimo: 60</li>
                     </ul>
                     <p class="text-[10px] sm:text-xs text-gray-400 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-800">Para quem quer menos ruído que o SNIPER, mantendo várias oportunidades por dia.</p>
@@ -544,7 +544,7 @@
                     <ul class="text-[11px] sm:text-xs text-gray-400 space-y-2 sm:space-y-3 flex-grow">
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M15 to MN1</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Validação Final no H1</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Gatilho: ≥ 18 | Micro: ≥ 20</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Macro: ≥ 18 | Gatilho: ≥ 18 | Micro: ≥ 20</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Score Mínimo: 70</li>
                     </ul>
                     <p class="text-[10px] sm:text-xs text-gray-400 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-800">Para posicionamento de médio/longo prazo, com o filtro mais rigoroso de todos os modos.</p>
