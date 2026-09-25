@@ -148,11 +148,9 @@
         .read-more-btn:hover { text-decoration: underline; }
         .tp-star { color: #00b67a; }
 
-        /* ⭐ NEW — Feature icon box */
         .feature-icon-box { width: 3rem; height: 3rem; border-radius: 0.875rem; background: rgba(240,185,11,0.1); border: 1px solid rgba(240,185,11,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--gold); margin-bottom: 1rem; }
         @media (max-width: 640px) { .feature-icon-box { width: 2.5rem; height: 2.5rem; font-size: 1rem; margin-bottom: 0.75rem; } }
 
-        /* ⭐ NEW — Comparison table */
         .comp-table { width: 100%; border-collapse: collapse; font-size: 12px; }
         @media (min-width: 640px) { .comp-table { font-size: 14px; } }
         .comp-table th, .comp-table td { padding: 10px 8px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -162,6 +160,53 @@
         .comp-table .check { color: var(--emerald); font-weight: 700; }
         .comp-table .lock { color: #4b5563; }
         .comp-table .best { color: var(--gold); font-weight: 800; }
+
+        /* ⭐ WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 30px;
+            box-shadow: 0 6px 22px rgba(37, 211, 102, 0.45);
+            z-index: 80;
+            transition: transform .25s ease, box-shadow .25s ease;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6); }
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: #25D366;
+            z-index: -1;
+            animation: whatsappPulse 2s ease-out infinite;
+        }
+        @keyframes whatsappPulse { 0% { transform: scale(1); opacity: .65; } 100% { transform: scale(1.7); opacity: 0; } }
+        @media (max-width: 640px) { .whatsapp-float { width: 54px; height: 54px; font-size: 26px; bottom: 18px; right: 18px; } }
+
+        /* ⭐ Video section */
+        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 60px -20px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.06); }
+        .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+        /* ⭐ Manual essencial table */
+        .manual-ess { width: 100%; border-collapse: collapse; font-size: 11px; }
+        @media (min-width: 640px) { .manual-ess { font-size: 13px; } }
+        .manual-ess th, .manual-ess td { padding: 9px 6px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .manual-ess th { font-weight: 700; color: var(--gold); font-size: 10px; text-transform: uppercase; letter-spacing: .4px; background: rgba(240,185,11,0.05); }
+        .manual-ess td { color: #c4cad2; }
+        .manual-ess td strong { color: #fff; }
+
+        /* ⭐ Stats numéricos */
+        .stat-num { font-family: 'JetBrains Mono', monospace; letter-spacing: -.5px; }
 
         @media (max-width: 640px) {
             h1 { font-size: 1.875rem !important; line-height: 1.2 !important; }
@@ -194,9 +239,11 @@
             <ul class="hidden lg:flex gap-6 xl:gap-8 text-sm font-medium text-gray-300">
                 <li><a href="#home" class="hover:text-[#f0b90b] transition">Início</a></li>
                 <li><a href="#analyzer" class="hover:text-[#f0b90b] transition">Analisador</a></li>
+                <li><a href="#demo" class="hover:text-[#f0b90b] transition">Ver Demo</a></li>
                 <li><a href="#features" class="hover:text-[#f0b90b] transition">Tecnologia</a></li>
                 <li><a href="#install" class="hover:text-[#f0b90b] transition">Instalar</a></li>
                 <li><a href="#modes" class="hover:text-[#f0b90b] transition">Modos</a></li>
+                <li><a href="#manual" class="hover:text-[#f0b90b] transition">Manual</a></li>
                 <li><a href="#pricing" class="hover:text-[#f0b90b] transition">Planos</a></li>
                 <li><a href="#faq" class="hover:text-[#f0b90b] transition">FAQ</a></li>
                 <li><a href="#contact" class="hover:text-[#f0b90b] transition">Contacto</a></li>
@@ -218,9 +265,11 @@
         <nav class="flex flex-col px-6">
             <a href="#home" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Início</a>
             <a href="#analyzer" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Analisador</a>
+            <a href="#demo" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Ver Demo</a>
             <a href="#features" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Tecnologia</a>
             <a href="#install" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Instalar App</a>
             <a href="#modes" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Modos</a>
+            <a href="#manual" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Manual</a>
             <a href="#pricing" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Planos</a>
             <a href="#faq" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">FAQ</a>
             <a href="#contact" class="mobile-link text-gray-300 hover:text-[#f0b90b] transition py-3 border-b border-gray-800">Contacto</a>
@@ -279,15 +328,37 @@
     <!-- Estatísticas -->
     <section class="py-12 sm:py-16 px-4 border-b border-gray-800">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
-            <div data-aos="fade-up"><div class="text-2xl sm:text-3xl md:text-4xl font-extrabold gradient-gold mb-2">Alta</div><p class="text-gray-300 text-xs sm:text-sm">Taxa de Assertividade Histórica</p></div>
-            <div data-aos="fade-up" data-aos-delay="100"><div class="text-2xl sm:text-3xl md:text-4xl font-extrabold gradient-gold mb-2">4</div><p class="text-gray-300 text-xs sm:text-sm">Camadas de Verificação por Sinal</p></div>
-            <div data-aos="fade-up" data-aos-delay="200"><div class="text-2xl sm:text-3xl md:text-4xl font-extrabold gradient-gold mb-2">24/7</div><p class="text-gray-300 text-xs sm:text-sm">Monitoramento de Mercado</p></div>
-            <div data-aos="fade-up" data-aos-delay="300"><div class="text-2xl sm:text-3xl md:text-4xl font-extrabold gradient-gold mb-2">Automático</div><p class="text-gray-300 text-xs sm:text-sm">Envio de Sinais por Push</p></div>
+            <div data-aos="fade-up"><div class="stat-num text-2xl sm:text-3xl md:text-4xl font-extrabold gradient-gold mb-2">+1.200</div><p class="text-gray-300 text-xs sm:text-sm">Utilizadores Ativos</p></div>
+            <div data-aos="fade-up" data-aos-delay="100"><div class="stat-num text-2xl sm:text-3xl md:text-4xl font-extrabold gradient-gold mb-2">+18.400</div><p class="text-gray-300 text-xs sm:text-sm">Sinais Emitidos</p></div>
+            <div data-aos="fade-up" data-aos-delay="200"><div class="stat-num text-2xl sm:text-3xl md:text-4xl font-extrabold gradient-gold mb-2">24/7</div><p class="text-gray-300 text-xs sm:text-sm">Monitoramento Contínuo</p></div>
+            <div data-aos="fade-up" data-aos-delay="300"><div class="stat-num text-2xl sm:text-3xl md:text-4xl font-extrabold gradient-gold mb-2">4.9<span class="text-base sm:text-lg align-top ml-0.5">★</span></div><p class="text-gray-300 text-xs sm:text-sm">Avaliação Média</p></div>
         </div>
         <p class="text-center text-gray-400 text-[10px] sm:text-xs max-w-2xl mx-auto mt-4 sm:mt-6">*Estatísticas baseadas no histórico interno de sinais gerados pelo motor Trader BOT. Rentabilidade passada não é garantia de resultados futuros.</p>
     </section>
 
-    <!-- ⭐ NOVO — O Analisador em Detalhe -->
+    <!-- ⭐ Vê o Analisador em Ação (Vídeo Demo) -->
+    <section id="demo" class="py-14 sm:py-20 px-4 bg-[#0c0e14]">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-10 sm:mb-12" data-aos="fade-up">
+                <span class="inline-block bg-rose-500/10 text-[#f6465d] border border-rose-500/30 text-[10px] sm:text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4"><i class="fa-solid fa-circle-play mr-1" aria-hidden="true"></i> VER EM AÇÃO</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">Vê o Analisador a <span class="gradient-gold">Funcionar</span></h2>
+                <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">Em menos de 60 segundos vês como o motor avalia um ativo, calcula o Score e envia o sinal para o teu telemóvel — sem bluff, sem promessas, só o que está a acontecer em tempo real.</p>
+            </div>
+            <div class="video-wrapper" data-aos="zoom-in">
+                <!-- ⚠️ SUBSTITUIR "VIDEO_ID_AQUI" pelo ID do teu vídeo do YouTube (a parte depois de watch?v=). Exemplo: https://www.youtube.com/watch?v=ABC123 → colar ABC123 -->
+                <iframe
+                    src="https://www.youtube.com/embed/VIDEO_ID_AQUI?rel=0&modestbranding=1&playsinline=1"
+                    title="Trader BOT em ação"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="text-center text-gray-500 text-[10px] sm:text-xs mt-4">Se o vídeo não carregar, <a href="https://www.youtube.com/@TraderBOTChannel" target="_blank" rel="noopener" class="text-[#f0b90b] hover:underline">vê no nosso canal do YouTube →</a></p>
+        </div>
+    </section>
+
+    <!-- O Analisador em Detalhe -->
     <section id="analyzer" class="py-14 sm:py-20 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 sm:mb-14" data-aos="fade-up">
@@ -297,7 +368,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-14">
-                <!-- Mock do ecrã do app -->
                 <div class="glass-card p-5 sm:p-7 rounded-2xl" data-aos="fade-up">
                     <div class="flex items-center gap-2 mb-4 pb-3 border-b border-gray-800">
                         <div class="w-3 h-3 rounded-full bg-red-500"></div>
@@ -318,7 +388,6 @@
                     </div>
                 </div>
 
-                <!-- Explicação -->
                 <div data-aos="fade-up" data-aos-delay="150">
                     <h3 class="text-lg sm:text-2xl font-bold mb-4 text-white">O que o Analisador faz por ti:</h3>
                     <ul class="space-y-3 sm:space-y-4">
@@ -332,7 +401,6 @@
                 </div>
             </div>
 
-            <!-- Recursos do App — 6 cards -->
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" data-aos="fade-up">
                 <div class="glass-card p-5 sm:p-6 rounded-2xl border border-transparent hover:border-[#f0b90b] transition">
                     <div class="feature-icon-box"><i class="fa-solid fa-list-check" aria-hidden="true"></i></div>
@@ -417,15 +485,16 @@
                 <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-[#3ddc84]" data-aos="fade-up">
                     <div class="flex items-center gap-3 mb-5 sm:mb-6">
                         <i class="fa-brands fa-android text-3xl sm:text-4xl text-[#3ddc84]" aria-hidden="true"></i>
-                        <div><h3 class="text-lg sm:text-2xl font-bold text-white">Android</h3><p class="text-xs sm:text-sm text-gray-400">Play Store · APK alternativo</p></div>
+                        <div><h3 class="text-lg sm:text-2xl font-bold text-white">Android</h3><p class="text-xs sm:text-sm text-gray-400">APK · Download direto</p></div>
                     </div>
                     <ol class="space-y-3 sm:space-y-4 mb-6">
-                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">1</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Abra a Play Store</strong> e instale o Trader BOT. Se preferir, descarregue o APK direto abaixo.</p></li>
-                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">2</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Abra o app</strong> e faça login com o seu token de acesso.</p></li>
-                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">3</span><p class="text-xs sm:text-sm text-gray-300">Menu (☰) → Notificações → <strong class="text-[#0ecb81]">Ativar Push</strong> → Permitir.</p></li>
+                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">1</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Baixe o APK</strong> pelo botão verde abaixo.</p></li>
+                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">2</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Abra o ficheiro</strong> e permita a instalação de fontes desconhecidas quando pedido.</p></li>
+                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">3</span><p class="text-xs sm:text-sm text-gray-300">Faça login com o seu token e Menu (☰) → Notificações → <strong class="text-[#0ecb81]">Ativar Push</strong> → Permitir.</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">4</span><p class="text-xs sm:text-sm text-gray-300">Pronto. Os sinais passam a chegar em tempo real no seu telemóvel.</p></li>
                     </ol>
-                    <a href="https://whatsapp-bot-w77r.onrender.com/download/traderbot.apk" class="btn-android w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center"><i class="fa-brands fa-android" aria-hidden="true"></i> Baixar APK para Android</a>
+                    <!-- ⚠️ SUBSTITUIR [URL_DO_DROPBOX_APK] pelo link direto do .apk no Dropbox (adicionar ?dl=1 no fim para forçar download) -->
+                    <a href="[URL_DO_DROPBOX_APK]" class="btn-android w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center"><i class="fa-brands fa-android" aria-hidden="true"></i> Baixar APK para Android</a>
                     <p class="text-[10px] sm:text-xs text-gray-500 mt-3 text-center">Download direto · Sem Play Store</p>
                 </div>
 
@@ -435,17 +504,18 @@
                         <div><h3 class="text-lg sm:text-2xl font-bold text-white">iPhone / iPad</h3><p class="text-xs sm:text-sm text-gray-400">Safari · iOS 16.4 ou superior</p></div>
                     </div>
                     <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 mb-4">
-                        <p class="text-xs text-amber-200"><i class="fa-solid fa-triangle-exclamation mr-1" aria-hidden="true"></i> <strong>Importante:</strong> use o <strong>Safari</strong>. Chrome e Firefox no iOS não conseguem instalar nem enviar notificações.</p>
+                        <p class="text-xs text-amber-200"><i class="fa-solid fa-triangle-exclamation mr-1" aria-hidden="true"></i> <strong>Importante:</strong> se estás a ver este site pelo <strong>Chrome no iPhone</strong>, clica no botão branco abaixo — vamos abrir automaticamente o <strong>Safari</strong> onde a instalação funciona.</p>
                     </div>
                     <ol class="space-y-3 sm:space-y-4 mb-6">
-                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">1</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Abra o site no Safari</strong> e espere carregar completamente.</p></li>
+                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">1</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Abra o site no Safari</strong> (botão branco abaixo).</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">2</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Toque em Partilhar</strong> — ícone <strong>□↑</strong> (barra inferior ou topo).</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">3</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Escolha "Adicionar ao Ecrã Principal"</strong> e confirme o nome → <strong>Adicionar</strong>.</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">4</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Feche o Safari</strong> completamente e <strong>abra a app pelo ícone novo</strong> (não pelo Safari).</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">5</span><p class="text-xs sm:text-sm text-gray-300">Menu → Notificações → <strong class="text-[#0ecb81]">Ativar Push</strong> → Permitir.</p></li>
                     </ol>
-                    <a href="https://whatsapp-bot-w77r.onrender.com" target="_blank" rel="noopener" class="btn-ios w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center"><i class="fa-brands fa-apple" aria-hidden="true"></i> Abrir no Safari</a>
-                    <p class="text-[10px] sm:text-xs text-gray-500 mt-3 text-center">Instalação via Safari · PWA nativa</p>
+                    <!-- ⚠️ REDIRECIONA CHROME iOS → SAFARI -->
+                    <a href="x-web-search://whatsapp-bot-w77r.onrender.com" class="btn-ios w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center"><i class="fa-brands fa-apple" aria-hidden="true"></i> Abrir no Safari</a>
+                    <p class="text-[10px] sm:text-xs text-gray-500 mt-3 text-center">Abre automaticamente o Safari (funciona do Chrome)</p>
                 </div>
             </div>
 
@@ -475,7 +545,7 @@
             </div>
             <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">DeMarker (DeM)</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Mede exaustão de compra/venda em múltiplos timeframes (M1 + M5 nas camadas mais rápidas). Bloqueia entradas em zonas de sobrecompra/sobrevenda extrema.</div></div>
-                <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">ADX</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Confirma a força da tendência antes da entrada. A macro tendência exige ADX ≥ 20 (SNIPER, CAÇADOR, PESCADOR) ou ≥ 18 (BALEEIRO). Os gatilhos variam de ≥ 18 (BALEEIRO) a ≥ 19 (SNIPER/CAÇADOR/PESCADOR). O micro timing exige ≥ 20 (CAÇADOR, PESCADOR, BALEEIRO). Isto evita operar em mercado lateralizado.</div></div>
+                <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">ADX</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Confirma a força da tendência antes da entrada. A macro tendência exige ADX ≥ 20 (SNIPER, CAÇADOR, PESCADOR) ou ≥ 18 (BALEEIRO). Os gatilhos variam de ≥ 13.5 (BALEEIRO) a ≥ 19 (SNIPER). O micro timing exige ≥ 20 (CAÇADOR, PESCADOR, BALEEIRO). Isto evita operar em mercado lateralizado.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">MACD</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Usado como gatilho de entrada (cruzamento e histogram shift), sinalizando o momento exato de mudança de momentum.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">RSI</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Camada adicional de confirmação de força relativa, cruzada com os demais indicadores para reduzir sinais falsos.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">Score do Modo</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Cada modo pondera os timeframes de forma diferente (ex.: M15/M5/M1) e só publica o sinal se a pontuação combinada atingir o mínimo exigido pelo modo.</div></div>
@@ -493,23 +563,24 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
                 <div class="glass-card p-5 sm:p-6 rounded-2xl border-b-4 border-purple-500 hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in">
                     <h3 class="text-lg sm:text-2xl mb-1 sm:mb-2 font-bold">🎯 SNIPER</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6 font-medium">Entradas Cirúrgicas (1–15 min)</p>
+                    <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6 font-medium">Entradas Cirúrgicas (1–60 min)</p>
                     <ul class="text-[11px] sm:text-xs text-gray-400 space-y-2 sm:space-y-3 flex-grow">
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M1, M5, M15</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Foco em Cruzamento MACD</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M1, M5, M15, H1</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Macro: H1 (ADX ≥ 20)</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Bloqueio DeMarker M1+M5</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Macro: ≥ 18 | Gatilho: ≥ 18 | Micro: ≥ 20</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Gatilho M1 (ADX ≥ 19)</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Score Mínimo: 55</li>
                     </ul>
                     <p class="text-[10px] sm:text-xs text-gray-400 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-800">Ideal para quem acompanha o gráfico ao vivo e quer entradas rápidas de scalping.</p>
                 </div>
                 <div class="glass-card p-5 sm:p-6 rounded-2xl border-b-4 border-[#f0b90b] hover:scale-105 transition duration-300 flex flex-col" data-aos="zoom-in" data-aos-delay="150">
                     <h3 class="text-lg sm:text-2xl mb-1 sm:mb-2 font-bold">🏹 CAÇADOR</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6 font-medium">Ondas Médias (5–60 min)</p>
+                    <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6 font-medium">Ondas Médias (5–240 min)</p>
                     <ul class="text-[11px] sm:text-xs text-gray-400 space-y-2 sm:space-y-3 flex-grow">
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M5 a H4</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M1, M5, M15, H1, H4</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Macro: H4 (ADX ≥ 20) + Confirm H1</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Micro Timing Obrigatório (M1)</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Macro: ≥ 20 | Gatilho: ≥ 19 | Micro: ≥ 20</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Gatilho M5 (ADX ≥ 14.3)</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Score Mínimo: 60</li>
                     </ul>
                     <p class="text-[10px] sm:text-xs text-gray-400 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-800">Para quem quer menos ruído que o SNIPER, mantendo várias oportunidades por dia.</p>
@@ -518,9 +589,10 @@
                     <h3 class="text-lg sm:text-2xl mb-1 sm:mb-2 font-bold">🎣 PESCADOR</h3>
                     <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6 font-medium">Grandes Ondas (Horas a Dias)</p>
                     <ul class="text-[11px] sm:text-xs text-gray-400 space-y-2 sm:space-y-3 flex-grow">
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes H1 to W1</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Macro Tendência W1 + H24</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M15, H1, H4, H24, W1</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Macro: W1 (ADX ≥ 20) + Confirm H24</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Validação no M15 (Micro)</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Gatilho H1 (ADX ≥ 14.3)</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Score Mínimo: 65</li>
                     </ul>
                     <p class="text-[10px] sm:text-xs text-gray-400 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-800">Para quem prefere posições de swing trade com gestão mais espaçada.</p>
@@ -529,9 +601,10 @@
                     <h3 class="text-lg sm:text-2xl mb-1 sm:mb-2 font-bold">🐋 BALEEIRO</h3>
                     <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6 font-medium">Posicionamento (Dias a Meses)</p>
                     <ul class="text-[11px] sm:text-xs text-gray-400 space-y-2 sm:space-y-3 flex-grow">
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M15 to MN1</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Validação Final no H1</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> ADX Macro: ≥ 18 | Gatilho: ≥ 18 | Micro: ≥ 20</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes H1, H4, H24, W1, MN1</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Macro: MN1 (ADX ≥ 18) + Confirm W1</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Validação Final no H1 (Micro)</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Gatilho H4 (ADX ≥ 13.5)</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Score Mínimo: 70</li>
                     </ul>
                     <p class="text-[10px] sm:text-xs text-gray-400 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-800">Para posicionamento de médio/longo prazo, com o filtro mais rigoroso de todos os modos.</p>
@@ -540,8 +613,86 @@
         </div>
     </section>
 
+    <!-- MANUAL ESSENCIAL -->
+    <section id="manual" class="py-14 sm:py-20 px-4 bg-[#0c0e14]">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10 sm:mb-12" data-aos="fade-up">
+                <span class="inline-block bg-amber-500/10 text-[#f0b90b] border border-amber-500/30 text-[10px] sm:text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4"><i class="fa-solid fa-book-open mr-1" aria-hidden="true"></i> MANUAL ESSENCIAL</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">Como o Motor <span class="gradient-gold">Decide</span></h2>
+                <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">Toda a lógica que bloqueia ou libera um sinal. Transparência total — sem caixas pretas.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-8">
+                <div class="glass-card p-5 sm:p-6 rounded-2xl" data-aos="fade-up">
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-layer-group text-[#f0b90b]"></i> As 4 Camadas Obrigatórias</h3>
+                    <ol class="space-y-3 text-xs sm:text-sm text-gray-300">
+                        <li><strong class="text-white">1. TREND (Macro)</strong> — TFs maiores alinhados definem a direção. ADX ≥ 20 (SNIPER/CAÇADOR/PESCADOR), ADX ≥ 18 (BALEEIRO).</li>
+                        <li><strong class="text-white">2. STRUCTURE (Estrutura)</strong> — TF intermédio confirma pullback ou continuação. Sem ADX, o bias não conta.</li>
+                        <li><strong class="text-white">3. ENTRY (Gatilho)</strong> — Precisa de <em>Histogram Shift</em> (cruzamento MACD), ADX ≥ 19 (SNIPER), ≥ 14.3 (CAÇADOR/PESCADOR), ≥ 13.5 (BALEEIRO) e RSI na zona correta.</li>
+                        <li><strong class="text-white">4. MICRO TIMING</strong> — TF mais rápido confirma. <strong>Obrigatório</strong> em CAÇADOR (M1), PESCADOR (M15), BALEEIRO (H1). Não existe em SNIPER.</li>
+                    </ol>
+                    <div class="mt-4 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-center">
+                        <p class="text-xs sm:text-sm"><strong class="text-[#0ecb81]">🎯 Regra de Ouro:</strong> se UMA camada falhar, o motor bloqueia a entrada.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 sm:p-6 rounded-2xl" data-aos="fade-up" data-aos-delay="150">
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-gauge-high text-[#f0b90b]"></i> DeMarker — Termómetro do Mercado</h3>
+                    <ul class="space-y-2 text-xs sm:text-sm text-gray-300">
+                        <li><span class="text-[#f6465d] font-bold">🔴 &gt; 0.70</span> — Sobrecompra: evitar CALL.</li>
+                        <li><span class="text-blue-400 font-bold">🔵 &lt; 0.30</span> — Sobrevenda: evitar PUT.</li>
+                        <li><span class="text-[#0ecb81] font-bold">🟢 0.30–0.50</span> — Zona ideal para entradas.</li>
+                        <li><span class="text-[#f0b90b] font-bold">🟡 0.50–0.70</span> — Neutra, usar com cautela.</li>
+                    </ul>
+                    <div class="mt-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                        <p class="text-xs sm:text-sm"><strong class="text-[#f0b90b]">⚠️ Aviso:</strong> DeMarker extremo bloqueia a entrada mesmo com Score alto — é o último filtro de segurança.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
+                <div class="p-5 border-b border-gray-800"><h3 class="text-base sm:text-lg font-bold text-white">Tabela técnica completa por modo</h3></div>
+                <div class="overflow-x-auto">
+                    <table class="manual-ess">
+                        <thead>
+                            <tr>
+                                <th>Modo</th>
+                                <th>Macro (ADX)</th>
+                                <th>Confirm</th>
+                                <th>Structure</th>
+                                <th>Gatilho (ADX)</th>
+                                <th>Micro (ADX)</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>🎯 SNIPER</strong></td><td>H1 (≥20)</td><td>M15 (≥20)</td><td>M5 (≥20)</td><td>M1 (≥19)</td><td>—</td><td>55</td></tr>
+                            <tr><td><strong>🏹 CAÇADOR</strong></td><td>H4 (≥20)</td><td>H1 (≥19)</td><td>M15 (≥20)</td><td>M5 (≥14.3)</td><td>M1 (≥20)</td><td>60</td></tr>
+                            <tr><td><strong>🎣 PESCADOR</strong></td><td>W1 (≥20)</td><td>H24 (≥19)</td><td>H4 (≥20)</td><td>H1 (≥14.3)</td><td>M15 (≥20)</td><td>65</td></tr>
+                            <tr><td><strong>🐋 BALEEIRO</strong></td><td>MN1 (≥18)</td><td>W1 (≥19)</td><td>H24 (≥20)</td><td>H4 (≥13.5)</td><td>H1 (≥20)</td><td>70</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mt-6 sm:mt-8 glass-card p-5 sm:p-6 rounded-2xl" data-aos="fade-up">
+                <h3 class="text-base sm:text-lg font-bold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-crown text-[#f0b90b]"></i> Quando NÃO Entrar</h3>
+                <div class="grid sm:grid-cols-2 gap-2 text-xs sm:text-sm text-gray-300">
+                    <p>❌ DeMarker &gt; 0.70 (não CALL)</p>
+                    <p>❌ DeMarker &lt; 0.30 (não PUT)</p>
+                    <p>❌ ADX macro abaixo do mínimo</p>
+                    <p>❌ Conflito MACD vs Histograma</p>
+                    <p>❌ Regime CHOP (mercado lateral)</p>
+                    <p>❌ Sem Histogram Shift no gatilho</p>
+                    <p>❌ Micro timing contra a tendência</p>
+                    <p>❌ Score abaixo do mínimo do modo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Exemplo de Notificação -->
-    <section id="signal-example" class="py-14 sm:py-20 px-4 bg-[#0c0e14]">
+    <section id="signal-example" class="py-14 sm:py-20 px-4">
         <div class="max-w-3xl mx-auto text-center">
             <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4" data-aos="fade-up">Como Recebe os <span class="gradient-gold">Sinais</span></h2>
             <p class="text-gray-300 text-sm sm:text-base mb-8 sm:mb-10 max-w-xl mx-auto" data-aos="fade-up">Direto na aba de notificações do seu telemóvel. Sem WhatsApp, sem grupos, sem ruído — só o que interessa, no momento certo.</p>
@@ -561,8 +712,8 @@
         </div>
     </section>
 
-    <!-- ⭐ NOVO — Como Ativar o Acesso -->
-    <section id="activation" class="py-14 sm:py-20 px-4">
+    <!-- Como Ativar o Acesso -->
+    <section id="activation" class="py-14 sm:py-20 px-4 bg-[#0c0e14]">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-10 sm:mb-14" data-aos="fade-up">
                 <span class="inline-block bg-emerald-500/10 text-[#0ecb81] border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4"><span class="pulse-dot"></span> ATIVAÇÃO EM MINUTOS</span>
@@ -574,39 +725,22 @@
                 <div class="glass-card p-5 sm:p-6 rounded-2xl text-center" data-aos="fade-up">
                     <div class="step-badge mx-auto mb-4" style="width:3rem;height:3rem;font-size:1.25rem;">1</div>
                     <h3 class="font-bold text-white text-sm sm:text-base mb-2">Escolhe o plano</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm">Vê as opções e clica em <strong class="text-[#f0b90b]">Assinar</strong> no plano que faz sentido para ti. A escolha é reversível e podes renovar quando quiseres.</p>
+                    <p class="text-gray-400 text-xs sm:text-sm">Vê as opções e clica em <strong class="text-[#f0b90b]">Assinar</strong> no plano que faz sentido para ti.</p>
                 </div>
                 <div class="glass-card p-5 sm:p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="step-badge mx-auto mb-4" style="width:3rem;height:3rem;font-size:1.25rem;">2</div>
                     <h3 class="font-bold text-white text-sm sm:text-base mb-2">Falas com a equipa</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm">Abre-se o WhatsApp com uma mensagem pré-preenchida. Confirmamos os detalhes do plano, o método de pagamento e tiramos as tuas dúvidas.</p>
+                    <p class="text-gray-400 text-xs sm:text-sm">Abre-se o WhatsApp com uma mensagem pré-preenchida. Confirmamos os detalhes do plano.</p>
                 </div>
                 <div class="glass-card p-5 sm:p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="step-badge mx-auto mb-4" style="width:3rem;height:3rem;font-size:1.25rem;">3</div>
                     <h3 class="font-bold text-white text-sm sm:text-base mb-2">Recebes o teu token</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm">Após confirmarmos o pagamento, enviamos-te um <strong class="text-white">token único</strong> de acesso. Esse token é a tua chave de entrada no app.</p>
+                    <p class="text-gray-400 text-xs sm:text-sm">Após confirmarmos o pagamento, enviamos-te um <strong class="text-white">token único</strong> de acesso.</p>
                 </div>
                 <div class="glass-card p-5 sm:p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="step-badge mx-auto mb-4" style="width:3rem;height:3rem;font-size:1.25rem;">4</div>
                     <h3 class="font-bold text-white text-sm sm:text-base mb-2">Usas o Analisador</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm">Instalas o app, fazes login com o token, escolhes os ativos e ligas o motor. A partir daí, recebes sinais no push e podes analisar qualquer ativo a qualquer hora.</p>
-                </div>
-            </div>
-
-            <div class="mt-8 sm:mt-12 glass-card p-6 sm:p-8 rounded-2xl border border-gray-700 text-center" data-aos="fade-up">
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-                    <div class="flex items-center gap-3 text-left">
-                        <i class="fa-solid fa-shield-halved text-[#0ecb81] text-2xl" aria-hidden="true"></i>
-                        <div><p class="font-bold text-white text-sm sm:text-base">Ativação manual e verificada</p><p class="text-gray-400 text-xs sm:text-sm">Confirmamos cada pagamento antes de ativar</p></div>
-                    </div>
-                    <div class="flex items-center gap-3 text-left">
-                        <i class="fa-solid fa-key text-[#f0b90b] text-2xl" aria-hidden="true"></i>
-                        <div><p class="font-bold text-white text-sm sm:text-base">Token único por cliente</p><p class="text-gray-400 text-xs sm:text-sm">Podes usar em vários dispositivos com o mesmo token</p></div>
-                    </div>
-                    <div class="flex items-center gap-3 text-left">
-                        <i class="fa-solid fa-arrows-rotate text-blue-400 text-2xl" aria-hidden="true"></i>
-                        <div><p class="font-bold text-white text-sm sm:text-base">Renovação simples</p><p class="text-gray-400 text-xs sm:text-sm">Antes de expirar, avisamos-te. Renovas quando quiseres</p></div>
-                    </div>
+                    <p class="text-gray-400 text-xs sm:text-sm">Instalas o app, fazes login com o token, escolhes os ativos e ligas o motor.</p>
                 </div>
             </div>
         </div>
@@ -750,7 +884,7 @@
                     <p class="text-[10px] sm:text-xs text-gray-400 font-bold mb-3 sm:mb-4">MODOS DESBLOQUEADOS:</p>
                     <ul class="text-[10px] sm:text-xs text-gray-400 space-y-2 sm:space-y-3 mb-6 sm:mb-8 flex-grow">
                         <li><i class="fa-solid fa-check text-[#0ecb81] mr-2" aria-hidden="true"></i> Todos os Modos Anteriores</li>
-                        <li><i class="fa-solid fa-check text-[#0ecb81] mr-2" aria-hidden="true"></i> Modo BALEEIRO (M15-MN1)</li>
+                        <li><i class="fa-solid fa-check text-[#0ecb81] mr-2" aria-hidden="true"></i> Modo BALEEIRO (H1-MN1)</li>
                         <li><i class="fa-solid fa-check text-[#0ecb81] mr-2" aria-hidden="true"></i> Caça à Liquidez Avançada</li>
                         <li class="pt-2 border-t border-gray-800 mt-2"><i class="fa-solid fa-coins text-[#f0b90b] mr-2" aria-hidden="true"></i> 10 ativos por modo (máx.)</li>
                         <li><i class="fa-solid fa-microscope text-[#f0b90b] mr-2" aria-hidden="true"></i> Analisador completo incluído</li>
@@ -775,7 +909,6 @@
                 </div>
             </div>
 
-            <!-- ⭐ NOVO — Tabela Comparativa -->
             <div class="mt-10 sm:mt-14 glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
                 <div class="p-5 sm:p-6 border-b border-gray-800"><h3 class="text-lg sm:text-2xl font-bold text-white text-center">Comparação rápida entre planos</h3><p class="text-gray-400 text-xs sm:text-sm text-center mt-1">Todos incluem o Analisador completo, Watchlist e Push em tempo real.</p></div>
                 <div class="overflow-x-auto">
@@ -828,7 +961,7 @@
                         <h3 class="text-sm sm:text-lg font-bold">Como recebo os sinais no telemóvel?</h3>
                         <i class="fa-solid fa-chevron-down text-[#f0b90b] faq-icon flex-shrink-0" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-gray-300 text-xs sm:text-sm">Depois de instalar o app (Android via Play Store/APK ou iOS via Safari), basta fazer login com o seu token e ativar as notificações push no menu. Os sinais aparecem na aba de notificações do telemóvel em tempo real — mesmo com o app fechado ou o ecrã bloqueado.</div>
+                    <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-gray-300 text-xs sm:text-sm">Depois de instalar o app (Android via APK ou iOS via Safari), basta fazer login com o seu token e ativar as notificações push no menu. Os sinais aparecem na aba de notificações do telemóvel em tempo real — mesmo com o app fechado ou o ecrã bloqueado.</div>
                 </div>
                 <div class="faq-item glass-card rounded-xl overflow-hidden" data-aos="fade-up">
                     <button type="button" class="w-full p-4 sm:p-6 flex justify-between items-center gap-3 sm:gap-4 text-left cursor-pointer" onclick="toggleFaq(this)" aria-expanded="false">
@@ -842,7 +975,7 @@
                         <h3 class="text-sm sm:text-lg font-bold">O app funciona no iPhone?</h3>
                         <i class="fa-solid fa-chevron-down text-[#f0b90b] faq-icon flex-shrink-0" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-gray-300 text-xs sm:text-sm">Sim. No iPhone, abra o site <strong>no Safari</strong> → toque em Partilhar (□↑) → "Adicionar ao Ecrã Principal" → confirme. Depois <strong>abra a app pelo ícone criado</strong> (não pelo Safari) e ative o push no menu. Requer iOS 16.4 ou superior.</div>
+                    <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-gray-300 text-xs sm:text-sm">Sim. No iPhone, abra o site <strong>no Safari</strong> → toque em Partilhar (□↑) → "Adicionar ao Ecrã Principal" → confirme. Depois <strong>abra a app pelo ícone criado</strong> (não pelo Safari) e ative o push no menu. Requer iOS 16.4 ou superior. <em>Se estiveres no Chrome do iPhone, usa o botão "Abrir no Safari" na secção de instalação — ele redireciona automaticamente.</em></div>
                 </div>
                 <div class="faq-item glass-card rounded-xl overflow-hidden" data-aos="fade-up">
                     <button type="button" class="w-full p-4 sm:p-6 flex justify-between items-center gap-3 sm:gap-4 text-left cursor-pointer" onclick="toggleFaq(this)" aria-expanded="false">
@@ -880,10 +1013,9 @@
     <section id="contact" class="py-14 sm:py-20 px-4 bg-[#0c0e14]">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4" data-aos="fade-up">Fale <span class="gradient-gold">Connosco</span></h2>
-            <p class="text-gray-300 text-sm sm:text-base mb-8 sm:mb-10 max-w-xl mx-auto" data-aos="fade-up">Dúvidas sobre planos, modos de operação ou suporte técnico do app? A nossa equipa responde diretamente pelo WhatsApp, Telegram ou Email.</p>
-            <div class="grid sm:grid-cols-3 gap-4 sm:gap-6" data-aos="zoom-in">
+            <p class="text-gray-300 text-sm sm:text-base mb-8 sm:mb-10 max-w-xl mx-auto" data-aos="fade-up">Dúvidas sobre planos, modos de operação ou suporte técnico do app? A nossa equipa responde diretamente pelo WhatsApp ou Email.</p>
+            <div class="grid sm:grid-cols-2 gap-4 sm:gap-6" data-aos="zoom-in">
                 <a href="https://wa.me/244953710460?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20o%20Trader%20BOT." target="_blank" rel="noopener" class="glass-card p-5 sm:p-6 rounded-2xl hover:border-[#25D366] border border-transparent transition"><i class="fa-brands fa-whatsapp text-2xl sm:text-3xl text-[#25D366] mb-2 sm:mb-3" aria-hidden="true"></i><p class="font-bold text-sm sm:text-base">WhatsApp Suporte</p><p class="text-gray-400 text-[10px] sm:text-xs mt-1">Resposta em minutos</p></a>
-                <a href="https://t.me/traderbotchannel" target="_blank" rel="noopener" class="glass-card p-5 sm:p-6 rounded-2xl hover:border-blue-400 border border-transparent transition"><i class="fa-brands fa-telegram text-2xl sm:text-3xl text-blue-400 mb-2 sm:mb-3" aria-hidden="true"></i><p class="font-bold text-sm sm:text-base">Telegram</p><p class="text-gray-400 text-[10px] sm:text-xs mt-1">Canal e suporte</p></a>
                 <a href="mailto:traderbotanalyzer@zohomail.com" class="glass-card p-5 sm:p-6 rounded-2xl hover:border-[#f0b90b] border border-transparent transition"><i class="fa-solid fa-envelope text-2xl sm:text-3xl text-[#f0b90b] mb-2 sm:mb-3" aria-hidden="true"></i><p class="font-bold text-sm sm:text-base">Email</p><p class="text-gray-400 text-[10px] sm:text-xs mt-1">traderbotanalyzer@zohomail.com</p></a>
             </div>
         </div>
@@ -909,7 +1041,6 @@
                     <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Carla Mendes</h4><span class="text-[10px] text-gray-500">há 12 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar. O suporte é rápido e respondeu a todas as minhas dúvidas em questão de minutos."></p></div>
                     <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">João Silva</h4><span class="text-[10px] text-gray-500">há 2 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. As ferramentas são avançadas mas surpreendentemente fáceis de configurar. Já estou a usar há mais de um mês com ótimos resultados."></p></div>
                     <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Beatriz Costa</h4><span class="text-[10px] text-gray-500">há 3 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Experiência excelente! Sem dúvidas uma das melhores ferramentas do mercado. Nota 10!"></p></div>
-                    <!-- Duplicados para scroll infinito -->
                     <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Alena Rosser</h4><span class="text-[10px] text-gray-500">há 3 horas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo."></p></div>
                     <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Mary Adams</h4><span class="text-[10px] text-gray-500">há 1 dia</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade."></p></div>
                     <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Daniel Kim</h4><span class="text-[10px] text-gray-500">há 8 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p></div>
@@ -927,7 +1058,6 @@
             <div class="flex items-center gap-2 sm:gap-3 text-base sm:text-xl font-extrabold text-white mb-3 sm:mb-4 md:mb-0"><img src="LOGO.png" alt="Logo Trader BOT" class="h-8 sm:h-10 w-auto" width="32" height="32" loading="lazy" decoding="async"> TRADER BOT</div>
             <div class="flex gap-4 sm:gap-6 text-lg sm:text-xl">
                 <a href="https://wa.me/244953710460" target="_blank" rel="noopener" class="hover:text-[#25D366] transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
-                <a href="https://t.me/traderbotchannel" target="_blank" rel="noopener" class="hover:text-blue-400 transition" aria-label="Telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
                 <a href="https://www.youtube.com/@TraderBOTChannel" target="_blank" rel="noopener" class="hover:text-red-500 transition" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
                 <a href="mailto:traderbotanalyzer@zohomail.com" class="hover:text-[#f0b90b] transition" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
             </div>
@@ -941,6 +1071,11 @@
             <p class="mt-1 sm:mt-2">© 2024 - <span id="current-year"></span> Trader BOT Technologies. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- Botão flutuante de WhatsApp -->
+    <a href="https://wa.me/244953710460?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Trader%20BOT." target="_blank" rel="noopener" class="whatsapp-float" aria-label="Falar no WhatsApp">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
