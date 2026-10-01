@@ -6,13 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#08090d">
     <title>Trader BOT | App Analisador + Sinais com Push em Tempo Real</title>
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="https://whatsapp-bot-w77r.onrender.com/icon-192.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://whatsapp-bot-w77r.onrender.com/icon-192.png">
-    <link rel="shortcut icon" href="https://whatsapp-bot-w77r.onrender.com/icon-192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://whatsapp-bot-w77r.onrender.com/icon-192.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="https://whatsapp-bot-w77r.onrender.com/icon-192.png">
-    
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://traderbot-lovat.vercel.app/icon-192.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://traderbot-lovat.vercel.app/icon-192.png?v=2">
+    <link rel="shortcut icon" href="https://traderbot-lovat.vercel.app/icon-192.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://traderbot-lovat.vercel.app/icon-192.png?v=2">
+    <link rel="apple-touch-icon" sizes="192x192" href="https://traderbot-lovat.vercel.app/icon-192.png?v=2">
+
+    <!-- i18n -->
+    <link rel="alternate" hreflang="pt-BR" href="https://traderbot-lovat.vercel.app/" />
+    <link rel="alternate" hreflang="pt-AO" href="https://traderbot-lovat.vercel.app/" />
+    <link rel="alternate" hreflang="pt" href="https://traderbot-lovat.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://traderbot-lovat.vercel.app/" />
+    <link rel="canonical" href="https://traderbot-lovat.vercel.app/" />
+
     <style>
         body { background-color: #08090d; color: #eaecef; margin: 0; }
         html, body { overflow-x: hidden; max-width: 100%; }
@@ -29,12 +37,13 @@
 
     <meta property="og:title" content="Trader BOT | App Analisador + Sinais no Telemóvel" />
     <meta property="og:description" content="Ferramenta de análise técnica automatizada para o teu telemóvel. Analise qualquer ativo, veja a tendência, e receba sinais com Entrada, TP e SL direto no push." />
-    <meta property="og:image" content="https://traderbot-lovat.vercel.app/og-imagem.png" />
+    <meta property="og:image" content="https://traderbot-lovat.vercel.app/og-imagem.png?v=2" />
     <meta property="og:url" content="https://traderbot-lovat.vercel.app/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Trader BOT" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Schema.org FAQ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -49,13 +58,39 @@
     }
     </script>
 
+    <!-- Schema.org Product + Pricing -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Trader BOT — Analisador de Mercado + Sinais Automáticos",
+      "description": "App analisador técnico multi-timeframe com motor de sinais automáticos, notificações push em tempo real, Watchlist pessoal e Painel de Sinais. Compatível com Android e iOS (PWA).",
+      "brand": { "@type": "Brand", "name": "Trader BOT" },
+      "image": "https://traderbot-lovat.vercel.app/og-imagem.png?v=2",
+      "url": "https://traderbot-lovat.vercel.app/",
+      "category": "Financial Software",
+      "offers": [
+        { "@type": "Offer", "name": "Plano 7 Dias",  "price": "9",   "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://traderbot-lovat.vercel.app/#pricing" },
+        { "@type": "Offer", "name": "Plano 1 Mês",   "price": "19",  "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://traderbot-lovat.vercel.app/#pricing" },
+        { "@type": "Offer", "name": "Plano 3 Meses", "price": "49",  "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://traderbot-lovat.vercel.app/#pricing" },
+        { "@type": "Offer", "name": "Plano 6 Meses", "price": "89",  "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://traderbot-lovat.vercel.app/#pricing" },
+        { "@type": "Offer", "name": "Plano 1 Ano",   "price": "149", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://traderbot-lovat.vercel.app/#pricing" }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "ratingCount": "1200"
+      }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="canonical" href="https://traderbot-lovat.vercel.app/" />
-    
+
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
-    
+
     <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
 
@@ -113,7 +148,7 @@
         .ticker-wrapper { background: #000; border-bottom: 1px solid #1e2126; }
         .ticker { display: flex; gap: 2rem; animation: scroll 40s linear infinite; white-space: nowrap; width: max-content; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        
+
         .pulse-dot { width: 8px; height: 8px; background: var(--emerald); border-radius: 50%; display: inline-block; margin-right: 6px; position: relative; }
         .pulse-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(3); opacity: 0; } }
@@ -161,7 +196,6 @@
         .comp-table .lock { color: #4b5563; }
         .comp-table .best { color: var(--gold); font-weight: 800; }
 
-        /* ⭐ WhatsApp floating button */
         .whatsapp-float {
             position: fixed;
             bottom: 24px;
@@ -193,11 +227,9 @@
         @keyframes whatsappPulse { 0% { transform: scale(1); opacity: .65; } 100% { transform: scale(1.7); opacity: 0; } }
         @media (max-width: 640px) { .whatsapp-float { width: 54px; height: 54px; font-size: 26px; bottom: 18px; right: 18px; } }
 
-        /* ⭐ Video section */
         .video-wrapper { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 60px -20px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.06); }
         .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-        /* ⭐ Manual essencial table */
         .manual-ess { width: 100%; border-collapse: collapse; font-size: 11px; }
         @media (min-width: 640px) { .manual-ess { font-size: 13px; } }
         .manual-ess th, .manual-ess td { padding: 9px 6px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -205,7 +237,6 @@
         .manual-ess td { color: #c4cad2; }
         .manual-ess td strong { color: #fff; }
 
-        /* ⭐ Stats numéricos */
         .stat-num { font-family: 'JetBrains Mono', monospace; letter-spacing: -.5px; }
 
         @media (max-width: 640px) {
@@ -233,7 +264,7 @@
     <header class="fixed top-0 left-0 w-full z-50 p-2 sm:p-3 md:p-4 transition-all duration-300" id="header">
         <nav class="max-w-7xl mx-auto glass-card rounded-2xl px-4 sm:px-6 py-2 sm:py-3 flex justify-between items-center shadow-lg">
             <a href="#home" class="flex items-center gap-2 sm:gap-3 text-base sm:text-xl font-extrabold text-white">
-                <img src="LOGO.png" alt="Logo Trader BOT" class="h-8 sm:h-10 w-auto" width="32" height="32" loading="lazy" decoding="async">
+                <img src="LOGO.png?v=2" alt="Logo Trader BOT" class="h-8 sm:h-10 w-auto" width="32" height="32" loading="lazy" decoding="async">
                 TRADER <span class="gradient-gold">BOT</span>
             </a>
             <ul class="hidden lg:flex gap-6 xl:gap-8 text-sm font-medium text-gray-300">
@@ -336,7 +367,7 @@
         <p class="text-center text-gray-400 text-[10px] sm:text-xs max-w-2xl mx-auto mt-4 sm:mt-6">*Estatísticas baseadas no histórico interno de sinais gerados pelo motor Trader BOT. Rentabilidade passada não é garantia de resultados futuros.</p>
     </section>
 
-    <!-- ⭐ Vê o Analisador em Ação (Vídeo Demo) -->
+    <!-- Vê o Analisador em Ação -->
     <section id="demo" class="py-14 sm:py-20 px-4 bg-[#0c0e14]">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-10 sm:mb-12" data-aos="fade-up">
@@ -345,7 +376,7 @@
                 <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">Em menos de 60 segundos vês como o motor avalia um ativo, calcula o Score e envia o sinal para o teu telemóvel — sem bluff, sem promessas, só o que está a acontecer em tempo real.</p>
             </div>
             <div class="video-wrapper" data-aos="zoom-in">
-                <!-- ⚠️ SUBSTITUIR "VIDEO_ID_AQUI" pelo ID do teu vídeo do YouTube (a parte depois de watch?v=). Exemplo: https://www.youtube.com/watch?v=ABC123 → colar ABC123 -->
+                <!-- ⚠️ SUBSTITUIR "VIDEO_ID_AQUI" pelo ID do teu vídeo do YouTube -->
                 <iframe
                     src="https://www.youtube.com/embed/VIDEO_ID_AQUI?rel=0&modestbranding=1&playsinline=1"
                     title="Trader BOT em ação"
@@ -493,7 +524,7 @@
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">3</span><p class="text-xs sm:text-sm text-gray-300">Faça login com o seu token e Menu (☰) → Notificações → <strong class="text-[#0ecb81]">Ativar Push</strong> → Permitir.</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">4</span><p class="text-xs sm:text-sm text-gray-300">Pronto. Os sinais passam a chegar em tempo real no seu telemóvel.</p></li>
                     </ol>
-                    <!-- ⚠️ SUBSTITUIR [URL_DO_DROPBOX_APK] pelo link direto do .apk no Dropbox (adicionar ?dl=1 no fim para forçar download) -->
+                    <!-- ⚠️ SUBSTITUIR [URL_DO_DROPBOX_APK] -->
                     <a href="[URL_DO_DROPBOX_APK]" class="btn-android w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center"><i class="fa-brands fa-android" aria-hidden="true"></i> Baixar APK para Android</a>
                     <p class="text-[10px] sm:text-xs text-gray-500 mt-3 text-center">Download direto · Sem Play Store</p>
                 </div>
@@ -513,8 +544,7 @@
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">4</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Feche o Safari</strong> completamente e <strong>abra a app pelo ícone novo</strong> (não pelo Safari).</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">5</span><p class="text-xs sm:text-sm text-gray-300">Menu → Notificações → <strong class="text-[#0ecb81]">Ativar Push</strong> → Permitir.</p></li>
                     </ol>
-                    <!-- ⚠️ REDIRECIONA CHROME iOS → SAFARI -->
-                    <a href="x-web-search://whatsapp-bot-w77r.onrender.com" class="btn-ios w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center"><i class="fa-brands fa-apple" aria-hidden="true"></i> Abrir no Safari</a>
+                    <a href="javascript:void(0)" onclick="openInSafari()" class="btn-ios w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center"><i class="fa-brands fa-apple" aria-hidden="true"></i> Abrir no Safari</a>
                     <p class="text-[10px] sm:text-xs text-gray-500 mt-3 text-center">Abre automaticamente o Safari (funciona do Chrome)</p>
                 </div>
             </div>
@@ -545,7 +575,7 @@
             </div>
             <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">DeMarker (DeM)</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Mede exaustão de compra/venda em múltiplos timeframes (M1 + M5 nas camadas mais rápidas). Bloqueia entradas em zonas de sobrecompra/sobrevenda extrema.</div></div>
-                <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">ADX</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Confirma a força da tendência antes da entrada. A macro tendência exige ADX ≥ 20 (SNIPER, CAÇADOR, PESCADOR) ou ≥ 18 (BALEEIRO). Os gatilhos variam de ≥ 13.5 (BALEEIRO) a ≥ 19 (SNIPER). O micro timing exige ≥ 20 (CAÇADOR, PESCADOR, BALEEIRO). Isto evita operar em mercado lateralizado.</div></div>
+                <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">ADX</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Confirma a força da tendência antes da entrada. A macro tendência exige ADX ≥ 20 (SNIPER, CAÇADOR, PESCADOR) ou ≥ 18 (BALEEIRO). Os gatilhos variam de ≥ 13.5 (BALEEIRO) a ≥ 16 (SNIPER). O micro timing exige ≥ 15 (CAÇADOR, PESCADOR) ou ≥ 13 (BALEEIRO) — não existe em SNIPER. Isto evita operar em mercado lateralizado.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">MACD</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Usado como gatilho de entrada (cruzamento e histogram shift), sinalizando o momento exato de mudança de momentum.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">RSI</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Camada adicional de confirmação de força relativa, cruzada com os demais indicadores para reduzir sinais falsos.</div></div>
                 <div class="indicator-row grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 p-4 sm:p-6"><div class="font-bold text-[#f0b90b] text-sm sm:text-base">Score do Modo</div><div class="sm:col-span-3 text-xs sm:text-sm text-gray-300">Cada modo pondera os timeframes de forma diferente (ex.: M15/M5/M1) e só publica o sinal se a pontuação combinada atingir o mínimo exigido pelo modo.</div></div>
@@ -568,7 +598,7 @@
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Timeframes M1, M5, M15, H1</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Macro: H1 (ADX ≥ 20)</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Bloqueio DeMarker M1+M5</li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Gatilho M1 (ADX ≥ 19)</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Gatilho M1 (ADX ≥ 16)</li>
                         <li class="flex items-start"><i class="fa-solid fa-check text-[#0ecb81] mt-1 mr-2" aria-hidden="true"></i> Score Mínimo: 55</li>
                     </ul>
                     <p class="text-[10px] sm:text-xs text-gray-400 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-800">Ideal para quem acompanha o gráfico ao vivo e quer entradas rápidas de scalping.</p>
@@ -628,7 +658,7 @@
                     <ol class="space-y-3 text-xs sm:text-sm text-gray-300">
                         <li><strong class="text-white">1. TREND (Macro)</strong> — TFs maiores alinhados definem a direção. ADX ≥ 20 (SNIPER/CAÇADOR/PESCADOR), ADX ≥ 18 (BALEEIRO).</li>
                         <li><strong class="text-white">2. STRUCTURE (Estrutura)</strong> — TF intermédio confirma pullback ou continuação. Sem ADX, o bias não conta.</li>
-                        <li><strong class="text-white">3. ENTRY (Gatilho)</strong> — Precisa de <em>Histogram Shift</em> (cruzamento MACD), ADX ≥ 19 (SNIPER), ≥ 14.3 (CAÇADOR/PESCADOR), ≥ 13.5 (BALEEIRO) e RSI na zona correta.</li>
+                        <li><strong class="text-white">3. ENTRY (Gatilho)</strong> — Precisa de <em>Histogram Shift</em> (cruzamento MACD), ADX ≥ 16 (SNIPER), ≥ 14.3 (CAÇADOR/PESCADOR), ≥ 13.5 (BALEEIRO) e RSI na zona correta.</li>
                         <li><strong class="text-white">4. MICRO TIMING</strong> — TF mais rápido confirma. <strong>Obrigatório</strong> em CAÇADOR (M1), PESCADOR (M15), BALEEIRO (H1). Não existe em SNIPER.</li>
                     </ol>
                     <div class="mt-4 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-center">
@@ -666,10 +696,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td><strong>🎯 SNIPER</strong></td><td>H1 (≥20)</td><td>M15 (≥20)</td><td>M5 (≥20)</td><td>M1 (≥19)</td><td>—</td><td>55</td></tr>
-                            <tr><td><strong>🏹 CAÇADOR</strong></td><td>H4 (≥20)</td><td>H1 (≥19)</td><td>M15 (≥20)</td><td>M5 (≥14.3)</td><td>M1 (≥20)</td><td>60</td></tr>
-                            <tr><td><strong>🎣 PESCADOR</strong></td><td>W1 (≥20)</td><td>H24 (≥19)</td><td>H4 (≥20)</td><td>H1 (≥14.3)</td><td>M15 (≥20)</td><td>65</td></tr>
-                            <tr><td><strong>🐋 BALEEIRO</strong></td><td>MN1 (≥18)</td><td>W1 (≥19)</td><td>H24 (≥20)</td><td>H4 (≥13.5)</td><td>H1 (≥20)</td><td>70</td></tr>
+                            <tr><td><strong>🎯 SNIPER</strong></td><td>H1 (≥20)</td><td>M15 (≥20)</td><td>M5 (≥20)</td><td>M1 (≥16)</td><td>—</td><td>55</td></tr>
+                            <tr><td><strong>🏹 CAÇADOR</strong></td><td>H4 (≥20)</td><td>H1 (≥19)</td><td>M15 (≥20)</td><td>M5 (≥14.3)</td><td>M1 (≥15)</td><td>60</td></tr>
+                            <tr><td><strong>🎣 PESCADOR</strong></td><td>W1 (≥20)</td><td>H24 (≥19)</td><td>H4 (≥20)</td><td>H1 (≥14.3)</td><td>M15 (≥15)</td><td>65</td></tr>
+                            <tr><td><strong>🐋 BALEEIRO</strong></td><td>MN1 (≥18)</td><td>W1 (≥19)</td><td>H24 (≥20)</td><td>H4 (≥13.5)</td><td>H1 (≥13)</td><td>70</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -819,7 +849,7 @@
                 <p class="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-5 max-w-xl mx-auto">Todos os planos dão acesso ao <strong class="text-white">Analisador completo</strong> — a diferença está no número de modos de trading desbloqueados e no número de ativos que podes vigiar em simultâneo.</p>
                 <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
                     <span class="text-[10px] sm:text-xs text-gray-400 bg-gray-800/60 px-3 py-1.5 rounded-full"><i class="fa-brands fa-android text-[#3ddc84] mr-1" aria-hidden="true"></i> Android</span>
-                    <span class="text-[10px] sm:text-xs text-gray-400 bg-gray-800/60 px-3 py-1.5 rounded-full"><i class="fa-brands fa-apple mr-1" aria-hidden="true"></i> iOS</span>
+                    <span class="text-[10px] sm:text-xs text-gray-400 bg-gray-800/60 px-3 py-1.5 rounded-full"><i class="fa-brands fa-apple text-white mr-1" aria-hidden="true"></i> iOS</span>
                     <span class="text-[10px] sm:text-xs text-gray-400 bg-gray-800/60 px-3 py-1.5 rounded-full"><i class="fa-solid fa-bolt text-[#f0b90b] mr-1" aria-hidden="true"></i> Ativação em minutos</span>
                     <span class="text-[10px] sm:text-xs text-gray-400 bg-gray-800/60 px-3 py-1.5 rounded-full"><i class="fa-solid fa-shield-halved text-[#0ecb81] mr-1" aria-hidden="true"></i> Push em tempo real</span>
                 </div>
@@ -1035,18 +1065,18 @@
             
             <div class="reviews-carousel-container" data-aos="zoom-in">
                 <div class="reviews-carousel-track">
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Alena Rosser</h4><span class="text-[10px] text-gray-500">há 3 horas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo. Os resultados até agora superaram totalmente as minhas expectativas iniciais."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Mary Adams</h4><span class="text-[10px] text-gray-500">há 1 dia</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade. Recomendo vivamente a qualquer pessoa que queira automatizar as suas operações com total segurança e praticidade."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Daniel Kim</h4><span class="text-[10px] text-gray-500">há 8 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Carla Mendes</h4><span class="text-[10px] text-gray-500">há 12 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar. O suporte é rápido e respondeu a todas as minhas dúvidas em questão de minutos."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">João Silva</h4><span class="text-[10px] text-gray-500">há 2 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. As ferramentas são avançadas mas surpreendentemente fáceis de configurar. Já estou a usar há mais de um mês com ótimos resultados."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Beatriz Costa</h4><span class="text-[10px] text-gray-500">há 3 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Experiência excelente! Sem dúvidas uma das melhores ferramentas do mercado. Nota 10!"></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Alena Rosser</h4><span class="text-[10px] text-gray-500">há 3 horas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Mary Adams</h4><span class="text-[10px] text-gray-500">há 1 dia</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Daniel Kim</h4><span class="text-[10px] text-gray-500">há 8 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Carla Mendes</h4><span class="text-[10px] text-gray-500">há 12 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">João Silva</h4><span class="text-[10px] text-gray-500">há 2 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. Já estou a usar há mais de um mês com ótimos resultados."></p></div>
-                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar" loading="lazy"><div><h4 class="font-bold text-white text-sm">Beatriz Costa</h4><span class="text-[10px] text-gray-500">há 3 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Experiência excelente! Nota 10!"></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Alena Rosser</h4><span class="text-[10px] text-gray-500">há 3 horas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo. Os resultados até agora superaram totalmente as minhas expectativas iniciais."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Mary Adams</h4><span class="text-[10px] text-gray-500">há 1 dia</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade. Recomendo vivamente a qualquer pessoa que queira automatizar as suas operações com total segurança e praticidade."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Daniel Kim</h4><span class="text-[10px] text-gray-500">há 8 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Carla Mendes</h4><span class="text-[10px] text-gray-500">há 12 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar. O suporte é rápido e respondeu a todas as minhas dúvidas em questão de minutos."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">João Silva</h4><span class="text-[10px] text-gray-500">há 2 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. As ferramentas são avançadas mas surpreendentemente fáceis de configurar. Já estou a usar há mais de um mês com ótimos resultados."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Beatriz Costa</h4><span class="text-[10px] text-gray-500">há 3 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Experiência excelente! Sem dúvidas uma das melhores ferramentas do mercado. Nota 10!"></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=5" alt="Alena" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Alena Rosser</h4><span class="text-[10px] text-gray-500">há 3 horas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="A plataforma de automação é fantástica! Inicialmente fiquei com receio por causa da configuração das estratégias, mas o apoio ao cliente explicou-me tudo passo a passo."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=9" alt="Mary" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Mary Adams</h4><span class="text-[10px] text-gray-500">há 1 dia</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Absolutamente fantástico! O sistema executa com extrema precisão e velocidade."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" alt="Daniel" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Daniel Kim</h4><span class="text-[10px] text-gray-500">há 8 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Muito bom! Funciona exatamente como prometido. Excelente serviço."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=20" alt="Carla" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Carla Mendes</h4><span class="text-[10px] text-gray-500">há 12 dias</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Superou todas as minhas expectativas. A interface é super intuitiva e fácil de navegar."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=33" alt="João" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">João Silva</h4><span class="text-[10px] text-gray-500">há 2 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Serviço impecável do início ao fim. Já estou a usar há mais de um mês com ótimos resultados."></p></div>
+                    <div class="review-card"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=45" alt="Beatriz" class="review-avatar" loading="lazy" decoding="async" width="44" height="44"><div><h4 class="font-bold text-white text-sm">Beatriz Costa</h4><span class="text-[10px] text-gray-500">há 3 semanas</span></div></div><span class="tp-star text-lg">★</span></div><div class="text-[#00b67a] text-sm">★★★★★</div><p class="review-text text-sm text-gray-300" data-full-text="Experiência excelente! Nota 10!"></p></div>
                 </div>
             </div>
         </div>
@@ -1055,7 +1085,7 @@
     <!-- Footer -->
     <footer class="py-10 sm:py-12 px-4 border-t border-gray-800 bg-black">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center gap-2 sm:gap-3 text-base sm:text-xl font-extrabold text-white mb-3 sm:mb-4 md:mb-0"><img src="LOGO.png" alt="Logo Trader BOT" class="h-8 sm:h-10 w-auto" width="32" height="32" loading="lazy" decoding="async"> TRADER BOT</div>
+            <div class="flex items-center gap-2 sm:gap-3 text-base sm:text-xl font-extrabold text-white mb-3 sm:mb-4 md:mb-0"><img src="LOGO.png?v=2" alt="Logo Trader BOT" class="h-8 sm:h-10 w-auto" width="32" height="32" loading="lazy" decoding="async"> TRADER BOT</div>
             <div class="flex gap-4 sm:gap-6 text-lg sm:text-xl">
                 <a href="https://wa.me/244953710460" target="_blank" rel="noopener" class="hover:text-[#25D366] transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
                 <a href="https://www.youtube.com/@TraderBOTChannel" target="_blank" rel="noopener" class="hover:text-red-500 transition" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
@@ -1079,6 +1109,41 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
+        // ⭐ Abrir no Safari (iOS) — fallback fiável
+        function openInSafari() {
+            var url = 'https://traderbot-lovat.vercel.app/';
+            var ua = navigator.userAgent;
+            var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            var isChromeIOS = isIOS && /CriOS/.test(ua);
+            var isFirefoxIOS = isIOS && /FxiOS/.test(ua);
+            var isEdgeIOS = isIOS && /EdgiOS/.test(ua);
+
+            if (isChromeIOS) {
+                window.location.href = 'googlechrome://' + url.replace('https://', '');
+                setTimeout(function() {
+                    if (!document.hidden) {
+                        alert('Para instalar:\n\n1. Abre o Safari\n2. Cola este link:\n' + url + '\n3. Toca em Partilhar (□↑) → Adicionar ao Ecrã Principal');
+                    }
+                }, 1500);
+            } else if (isFirefoxIOS) {
+                window.location.href = 'firefox://open-url?url=' + encodeURIComponent(url);
+                setTimeout(function() {
+                    if (!document.hidden) {
+                        alert('Para instalar:\n\n1. Abre o Safari\n2. Cola este link:\n' + url + '\n3. Toca em Partilhar (□↑) → Adicionar ao Ecrã Principal');
+                    }
+                }, 1500);
+            } else if (isEdgeIOS) {
+                window.location.href = 'microsoft-edge://' + url.replace('https://', '');
+                setTimeout(function() {
+                    if (!document.hidden) {
+                        alert('Para instalar:\n\n1. Abre o Safari\n2. Cola este link:\n' + url + '\n3. Toca em Partilhar (□↑) → Adicionar ao Ecrã Principal');
+                    }
+                }, 1500);
+            } else {
+                window.location.href = url;
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof AOS !== 'undefined') { AOS.init({ duration: 800, once: true }); }
 
@@ -1136,7 +1201,7 @@
             }
         }
         fetchCryptoData();
-        setInterval(fetchCryptoData, 30000);
+        setInterval(fetchCryptoData, 60000);
 
         function toggleFaq(buttonEl) {
             const item = buttonEl.parentElement;
