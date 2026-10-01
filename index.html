@@ -535,17 +535,17 @@
                         <div><h3 class="text-lg sm:text-2xl font-bold text-white">iPhone / iPad</h3><p class="text-xs sm:text-sm text-gray-400">Safari · iOS 16.4 ou superior</p></div>
                     </div>
                     <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 mb-4">
-                        <p class="text-xs text-amber-200"><i class="fa-solid fa-triangle-exclamation mr-1" aria-hidden="true"></i> <strong>Importante:</strong> se estás a ver este site pelo <strong>Chrome no iPhone</strong>, clica no botão branco abaixo — vamos abrir automaticamente o <strong>Safari</strong> onde a instalação funciona.</p>
+                        <p class="text-xs text-amber-200"><i class="fa-solid fa-triangle-exclamation mr-1" aria-hidden="true"></i> <strong>Importante:</strong> no iPhone, a instalação <strong>só funciona pelo Safari</strong>. Se estás no Chrome/Firefox/Edge, abre o Safari manualmente e cola o link.</p>
                     </div>
                     <ol class="space-y-3 sm:space-y-4 mb-6">
-                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">1</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Abra o site no Safari</strong> (botão branco abaixo).</p></li>
+                        <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">1</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Abra o site no Safari</strong> (não no Chrome).</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">2</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Toque em Partilhar</strong> — ícone <strong>□↑</strong> (barra inferior ou topo).</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">3</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Escolha "Adicionar ao Ecrã Principal"</strong> e confirme o nome → <strong>Adicionar</strong>.</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">4</span><p class="text-xs sm:text-sm text-gray-300"><strong class="text-white">Feche o Safari</strong> completamente e <strong>abra a app pelo ícone novo</strong> (não pelo Safari).</p></li>
                         <li class="flex gap-3"><span class="step-badge" style="width:2rem;height:2rem;font-size:0.875rem;">5</span><p class="text-xs sm:text-sm text-gray-300">Menu → Notificações → <strong class="text-[#0ecb81]">Ativar Push</strong> → Permitir.</p></li>
                     </ol>
-                    <a href="javascript:void(0)" onclick="openInSafari()" class="btn-ios w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center"><i class="fa-brands fa-apple" aria-hidden="true"></i> Abrir no Safari</a>
-                    <p class="text-[10px] sm:text-xs text-gray-500 mt-3 text-center">Abre automaticamente o Safari (funciona do Chrome)</p>
+                    <a id="btn-ios-safari" href="javascript:void(0)" onclick="openInSafari()" class="btn-ios w-full px-6 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base justify-center" style="display:none"><i class="fa-brands fa-apple" aria-hidden="true"></i> Abrir no Safari</a>
+                    <p id="btn-ios-safari-hint" class="text-[10px] sm:text-xs text-gray-500 mt-3 text-center" style="display:none">Abre no Safari quando possível (iOS)</p>
                 </div>
             </div>
 
@@ -1005,7 +1005,7 @@
                         <h3 class="text-sm sm:text-lg font-bold">O app funciona no iPhone?</h3>
                         <i class="fa-solid fa-chevron-down text-[#f0b90b] faq-icon flex-shrink-0" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-gray-300 text-xs sm:text-sm">Sim. No iPhone, abra o site <strong>no Safari</strong> → toque em Partilhar (□↑) → "Adicionar ao Ecrã Principal" → confirme. Depois <strong>abra a app pelo ícone criado</strong> (não pelo Safari) e ative o push no menu. Requer iOS 16.4 ou superior. <em>Se estiveres no Chrome do iPhone, usa o botão "Abrir no Safari" na secção de instalação — ele redireciona automaticamente.</em></div>
+                    <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-gray-300 text-xs sm:text-sm">Sim. No iPhone, abra o site <strong>no Safari</strong> → toque em Partilhar (□↑) → "Adicionar ao Ecrã Principal" → confirme. Depois <strong>abra a app pelo ícone criado</strong> (não pelo Safari) e ative o push no menu. Requer iOS 16.4 ou superior. <em>A Apple não permite que o Chrome/Firefox/Edge do iPhone abram o Safari automaticamente — por isso, se estiveres noutro browser, copia o link e cola-o no Safari.</em></div>
                 </div>
                 <div class="faq-item glass-card rounded-xl overflow-hidden" data-aos="fade-up">
                     <button type="button" class="w-full p-4 sm:p-6 flex justify-between items-center gap-3 sm:gap-4 text-left cursor-pointer" onclick="toggleFaq(this)" aria-expanded="false">
@@ -1109,39 +1109,51 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
-        // ⭐ Abrir no Safari (iOS) — fallback fiável
+        // ⭐ Abrir no Safari (iOS) — versão correta
+        // A Apple bloqueia Chrome/Firefox/Edge no iOS de abrir o Safari.
+        // Por isso: se já estás no Safari → abre normal. Se estás noutro browser iOS → mostra instruções + copia URL.
         function openInSafari() {
             var url = 'https://traderbot-lovat.vercel.app/';
             var ua = navigator.userAgent;
             var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            var isSafari = isIOS && /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS/.test(ua);
             var isChromeIOS = isIOS && /CriOS/.test(ua);
             var isFirefoxIOS = isIOS && /FxiOS/.test(ua);
             var isEdgeIOS = isIOS && /EdgiOS/.test(ua);
 
-            if (isChromeIOS) {
-                window.location.href = 'googlechrome://' + url.replace('https://', '');
-                setTimeout(function() {
-                    if (!document.hidden) {
-                        alert('Para instalar:\n\n1. Abre o Safari\n2. Cola este link:\n' + url + '\n3. Toca em Partilhar (□↑) → Adicionar ao Ecrã Principal');
-                    }
-                }, 1500);
-            } else if (isFirefoxIOS) {
-                window.location.href = 'firefox://open-url?url=' + encodeURIComponent(url);
-                setTimeout(function() {
-                    if (!document.hidden) {
-                        alert('Para instalar:\n\n1. Abre o Safari\n2. Cola este link:\n' + url + '\n3. Toca em Partilhar (□↑) → Adicionar ao Ecrã Principal');
-                    }
-                }, 1500);
-            } else if (isEdgeIOS) {
-                window.location.href = 'microsoft-edge://' + url.replace('https://', '');
-                setTimeout(function() {
-                    if (!document.hidden) {
-                        alert('Para instalar:\n\n1. Abre o Safari\n2. Cola este link:\n' + url + '\n3. Toca em Partilhar (□↑) → Adicionar ao Ecrã Principal');
-                    }
-                }, 1500);
-            } else {
+            // ─── Caso 1: Já está no Safari → abre a URL normalmente ───
+            if (isSafari) {
                 window.location.href = url;
+                return;
             }
+
+            // ─── Caso 2: Está noutro browser iOS → não é possível forçar Safari ───
+            if (isChromeIOS || isFirefoxIOS || isEdgeIOS) {
+                var browserNome = isChromeIOS ? 'Chrome' : (isFirefoxIOS ? 'Firefox' : 'Edge');
+
+                // Copia a URL para o clipboard (facilita o passo 2)
+                var copiado = false;
+                try {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(url).then(function() {}).catch(function() {});
+                        copiado = true;
+                    }
+                } catch (e) { copiado = false; }
+
+                var msg = '📱 Para instalar no iPhone:\n\n' +
+                          '1. Abre a app "Safari" (ícone azul)\n' +
+                          '2. Cola este link na barra de endereço:\n' +
+                          url + '\n' +
+                          '3. Toca em Partilhar (□↑) → "Adicionar ao Ecrã Principal"\n\n' +
+                          '⚠️ O ' + browserNome + ' no iPhone NÃO consegue instalar apps — só o Safari consegue.' +
+                          (copiado ? '\n\n✅ Link copiado para a área de transferência.' : '');
+
+                alert(msg);
+                return;
+            }
+
+            // ─── Caso 3: Desktop ou outro → abre normalmente ───
+            window.location.href = url;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -1223,6 +1235,18 @@
         mobileLinks.forEach(link => { link.addEventListener('click', closeMenu); });
 
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // ⭐ Mostra o botão "Abrir no Safari" apenas em iOS (Safari, Chrome, Firefox, Edge)
+        (function() {
+            var ua = navigator.userAgent;
+            var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            if (isIOS) {
+                var btn = document.getElementById('btn-ios-safari');
+                var hint = document.getElementById('btn-ios-safari-hint');
+                if (btn) btn.style.display = 'inline-flex';
+                if (hint) hint.style.display = 'block';
+            }
+        })();
     </script>
 </body>
 </html>
